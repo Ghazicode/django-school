@@ -628,10 +628,17 @@
                     <a href="news.html">اخبار</a>
                     <a href="contact.html">تماس با ما</a>
 
-                    <div class="auth-buttons">
-                        <button class="btn btn-login" onclick="window.location.href='login.html'">ورود</button>
-                        <button class="btn btn-register" onclick="window.location.href='register.html'">ثبت نام</button>
-                    </div>
+                    
+                        <div class="auth-buttons">
+                            <div class="auth-buttons">
+                                <form action="{% url 'account:login' %}" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-login">ورود</button>
+                                </form>
+                                <form action="{% url 'account:register' %}" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-register">ثبت نام</button>
+                                </form>
+                            </div>
+                        </div>
                 </nav>
 
                 <button class="mobile-menu-btn">
@@ -660,10 +667,12 @@
         </nav>
 
         <div class="mobile-auth-buttons">
-            <button class="btn btn-login" style="width: 100%; margin-bottom: 10px;"
-                onclick="window.location.href='login.html'">ورود</button>
-            <button class="btn btn-register" style="width: 100%;" onclick="window.location.href='register.html'">ثبت
-                نام</button>
+            <form action="{% url 'account:login' %}" method="get" style="width: 100%; margin-bottom: 10px;">
+                <button type="submit" class="btn btn-login" style="width: 100%;">ورود</button>
+            </form>
+            <form action="{% url 'account:register' %}" method="get" style="width: 100%;">
+                <button type="submit" class="btn btn-register" style="width: 100%;">ثبت نام</button>
+            </form>
         </div>
     </div>
 
@@ -691,25 +700,26 @@
 
             <!-- //////////////////////////////////////////////////////////////////////// -->
 
-            
+
 
             {% for field in form %}
 
-                {% if field.errors %}
-                    {% for error in field.errors %}
-                        <div class="alert alert-danger" role="alert">
-                            {{ error }}
-                        </div>
-                    {% endfor %}
+            {% if field.errors %}
+            {% for error in field.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+            {% endfor %}
             {% endif %}
             {% endfor %}
+
+
             <form class="login-form" id="loginForm" , method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="username" class="form-label">نام کاربری یا شماره دانش‌آموزی</label>
                     <div class="input-with-icon">
-                        <!-- <input name="national_code" type="text" id="username" class="form-input" placeholder="نام کاربری خود را وارد کنید"
-                            required> -->
+                        
                         {{ form.national_code }}
 
                         <i class="fas fa-user input-icon"></i>
@@ -719,8 +729,7 @@
                 <div class="form-group">
                     <label for="password" class="form-label">رمز عبور</label>
                     <div class="input-with-icon">
-                        <!-- <input name="password" type="password" id="password" class="form-input" placeholder="رمز عبور خود را وارد کنید"
-                            required> -->
+                      
                         {{ form.password }}
                         <i class="fas fa-lock input-icon"></i>
                     </div>
@@ -735,7 +744,7 @@
 
 
                 <div class="register-link">
-                    <p>حساب کاربری ندارید؟ <a href="register.html">ثبت نام کنید</a></p>
+                    <p>حساب کاربری ندارید؟ <a href="{% url "account:register" %}">ثبت نام کنید</a></p>
                 </div>
             </form>
         </div>

@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقالات آموزشی - مدرسه نمونه دولتی ایران</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --dark-blue: #0d47a1;
+            --light-blue: #e8f0fe;
+            --accent-blue: #4285f4;
+            --text-dark: #202124;
+            --text-light: #5f6368;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* هدر */
+        header {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-desktop a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-desktop a:hover {
+            color: #a8d1ff;
+        }
+
+        .nav-desktop a.active {
+            color: #a8d1ff;
+        }
+
+        .nav-desktop a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #a8d1ff;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid var(--white);
+        }
+
+        .btn-login:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-register {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .btn-register:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* منوی موبایل */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.4s ease;
+            z-index: 1100;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* بخش هیرو */
+        .articles-hero {
+            background: var(--gradient), url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .articles-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+        }
+
+        .articles-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .articles-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .articles-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 60px 18px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-blue);
+            border: none;
+            color: var(--white);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: var(--dark-blue);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        /* بخش اصلی */
+        .articles-main {
+            padding: 60px 0;
+        }
+
+        .articles-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+        }
+
+        /* سایدبار فیلترها */
+        .filters-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .filter-widget {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-blue);
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-list li {
+            margin-bottom: 12px;
+        }
+
+        .category-list a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .category-list a:hover {
+            color: var(--primary-blue);
+            transform: translateX(-5px);
+        }
+
+        .category-count {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* محتوای اصلی مقالات */
+        .articles-content {
+            min-height: 600px;
+        }
+
+        .articles-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .results-info {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sort-select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: var(--white);
+            font-size: 0.9rem;
+        }
+
+        .view-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-btn {
+            padding: 10px 15px;
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        /* شبکه مقالات */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            height: 200px;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        }
+
+        .card-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 6px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 2;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .card-excerpt {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .card-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-stats {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .read-time {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .read-more {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 10px;
+        }
+
+        /* حالت لیست */
+        .articles-grid.list-view {
+            grid-template-columns: 1fr;
+        }
+
+        .articles-grid.list-view .article-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 0;
+        }
+
+        .articles-grid.list-view .card-image {
+            height: 100%;
+            border-radius: 15px 0 0 15px;
+        }
+
+        .articles-grid.list-view .card-content {
+            padding: 30px;
+        }
+
+        /* صفحه‌بندی */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .page-btn {
+            padding: 12px 18px;
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .page-btn:hover {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .page-btn.active {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* بخش خبرنامه */
+        .newsletter {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 60px 0;
+            margin-top: 60px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .newsletter-btn {
+            padding: 15px 30px;
+            background: var(--white);
+            color: var(--primary-blue);
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* فوتر */
+        footer {
+            background: linear-gradient(135deg, var(--dark-blue), #0a2a5a);
+            color: var(--white);
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-blue);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-right: 5px;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            color: var(--accent-blue);
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* رسپانسیو */
+        @media (max-width: 992px) {
+            .articles-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters-sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .articles-content {
+                order: 1;
+            }
+            
+            .articles-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .articles-hero {
+                padding: 80px 0 60px;
+            }
+            
+            .articles-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .articles-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .articles-grid.list-view .article-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .articles-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .sort-options {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+            
+            .articles-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .articles-hero p {
+                font-size: 1rem;
+            }
+            
+            .search-input {
+                padding: 15px 50px 15px 15px;
+            }
+            
+            .card-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .card-stats {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .articles-grid.list-view .card-content {
+                padding: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .newsletter h2 {
+                font-size: 1.6rem;
+            }
+            
+            .newsletter p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .articles-hero {
+                padding: 60px 0 40px;
+            }
+            
+            .articles-hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .filter-widget {
+                padding: 20px;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+            
+            .card-title {
+                font-size: 1.1rem;
+            }
+            
+            .pagination {
+                flex-wrap: wrap;
+            }
+            
+            .page-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- هدر -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>مدرسه نمونه دولتی ایران</h1>
+                        <p>پرورش استعدادها، ساختن آینده</p>
+                    </div>
+                </div>
+                
+                <nav class="nav-desktop">
+                    <a href="index.html">خانه</a>
+                    <a href="about.html">درباره ما</a>
+                    <a href="courses.html">آموزش‌ها</a>
+                    <a href="teachers.html">معلمان</a>
+                    <a href="news.html">اخبار</a>
+                    <a href="articles.html" class="active">مقالات</a>
+                    <a href="contact.html">تماس با ما</a>
+                    
+                    <div class="auth-buttons">
+                        <button class="btn btn-login" onclick="window.location.href='login.html'">ورود</button>
+                        <button class="btn btn-register" onclick="window.location.href='register.html'">ثبت نام</button>
+                    </div>
+                </nav>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- منوی موبایل -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <h3>منو</h3>
+            <button class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="mobile-nav">
+            <a href="index.html"><i class="fas fa-home"></i> خانه</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> درباره ما</a>
+            <a href="courses.html"><i class="fas fa-book-open"></i> آموزش‌ها</a>
+            <a href="teachers.html"><i class="fas fa-chalkboard-teacher"></i> معلمان</a>
+            <a href="news.html"><i class="fas fa-newspaper"></i> اخبار</a>
+            <a href="articles.html"><i class="fas fa-file-alt"></i> مقالات</a>
+            <a href="contact.html"><i class="fas fa-phone-alt"></i> تماس با ما</a>
+        </nav>
+        
+        <div class="mobile-auth-buttons">
+            <button class="btn btn-login" style="width: 100%; margin-bottom: 10px;" onclick="window.location.href='login.html'">ورود</button>
+            <button class="btn btn-register" style="width: 100%;" onclick="window.location.href='register.html'">ثبت نام</button>
+        </div>
+    </div>
+    
+    <div class="overlay"></div>
+
+    <!-- بخش هیرو -->
+    <section class="articles-hero">
+        <div class="container">
+            <div class="articles-hero-content">
+                <h1>مقالات آموزشی</h1>
+                <p>منبعی غنی از مقالات تخصصی و آموزشی برای دانش‌آموزان و معلمان</p>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="جستجو در مقالات...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش اصلی -->
+    <section class="articles-main">
+        <div class="container">
+            <div class="articles-layout">
+                <!-- سایدبار فیلترها -->
+                <aside class="filters-sidebar">
+                    <div class="filter-widget">
+                        <h3 class="widget-title">دسته‌بندی‌ها</h3>
+                        <ul class="category-list">
+                            <li>
+                                <a href="#">
+                                    <span>ریاضیات</span>
+                                    <span class="category-count">۲۴</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>فیزیک</span>
+                                    <span class="category-count">۱۸</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>شیمی</span>
+                                    <span class="category-count">۱۵</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>ادبیات</span>
+                                    <span class="category-count">۱۲</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>زبان انگلیسی</span>
+                                    <span class="category-count">۲۰</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>علوم کامپیوتر</span>
+                                    <span class="category-count">۱۶</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span>روش‌های مطالعه</span>
+                                    <span class="category-count">۸</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="filter-widget">
+                        <h3 class="widget-title">برچسب‌های پرطرفدار</h3>
+                        <div class="tag-cloud">
+                            <a href="#" class="tag">المپیاد</a>
+                            <a href="#" class="tag">کنکور</a>
+                            <a href="#" class="tag">حل مسئله</a>
+                            <a href="#" class="tag">هندسه</a>
+                            <a href="#" class="tag">جبر</a>
+                            <a href="#" class="tag">آزمایشگاه</a>
+                            <a href="#" class="tag">پژوهش</a>
+                            <a href="#" class="tag">خلاقیت</a>
+                        </div>
+                    </div>
+
+                    <div class="filter-widget">
+                        <h3 class="widget-title">مقالات ویژه</h3>
+                        <div class="featured-articles">
+                            <div class="article-card" style="margin-bottom: 15px;">
+                                <div class="card-content">
+                                    <div class="card-category">ویژه</div>
+                                    <h4 class="card-title">راهنمای جامع المپیاد ریاضی</h4>
+                                    <div class="card-meta">
+                                        <span>۱۵ بازدید</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="article-card">
+                                <div class="card-content">
+                                    <div class="card-category">ویژه</div>
+                                    <h4 class="card-title">تکنیک‌های مدیریت زمان</h4>
+                                    <div class="card-meta">
+                                        <span>۲۲ بازدید</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- محتوای اصلی -->
+                <main class="articles-content">
+                    <div class="articles-header">
+                        <div class="results-info">نمایش ۱-۱۲ از ۸۵ مقاله</div>
+                        <div class="sort-options">
+                            <select class="sort-select">
+                                <option>مرتب‌سازی: جدیدترین</option>
+                                <option>مرتب‌سازی: پربازدیدترین</option>
+                                <option>مرتب‌سازی: محبوب‌ترین</option>
+                            </select>
+                            <div class="view-options">
+                                <button class="view-btn active" data-view="grid">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="view-btn" data-view="list">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- شبکه مقالات -->
+                    <div class="articles-grid" id="articlesGrid">
+                        <!-- مقاله ۱ -->
+                        <article class="article-card">
+                            <div class="card-image" style="background: linear-gradient(45deg, #667eea, #764ba2);">
+                                <div class="card-category">ریاضیات</div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">روش‌های نوین حل مسائل هندسه در المپیادهای ریاضی</h3>
+                                <p class="card-excerpt">در این مقاله به بررسی روش‌های کارآمد و نوین برای حل مسائل هندسی در المپیادهای ریاضی می‌پردازیم و تکنیک‌های پیشرفته را آموزش می‌دهیم.</p>
+                                <div class="card-meta">
+                                    <div class="card-author">
+                                        <i class="far fa-user"></i>
+                                        <span>دکتر محمد رضایی</span>
+                                    </div>
+                                    <div class="card-stats">
+                                        <div class="stat">
+                                            <i class="far fa-eye"></i>
+                                            <span>۳۲۱</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="far fa-clock"></i>
+                                            <span>۸ دقیقه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="read-time">۲۰ شهریور ۱۴۰۲</span>
+                                    <a href="article-detail.html" class="read-more">
+                                        مطالعه مقاله
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- مقاله ۲ -->
+                        <article class="article-card">
+                            <div class="card-image" style="background: linear-gradient(45deg, #f093fb, #f5576c);">
+                                <div class="card-category">فیزیک</div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">آشنایی با مفاهیم پایه مکانیک کوانتومی برای دانش‌آموزان</h3>
+                                <p class="card-excerpt">مکانیک کوانتومی یکی از جذاب‌ترین شاخه‌های فیزیک است. در این مقاله مفاهیم پایه به زبان ساده توضیح داده شده‌اند.</p>
+                                <div class="card-meta">
+                                    <div class="card-author">
+                                        <i class="far fa-user"></i>
+                                        <span>دکتر فاطمه حسینی</span>
+                                    </div>
+                                    <div class="card-stats">
+                                        <div class="stat">
+                                            <i class="far fa-eye"></i>
+                                            <span>۲۸۷</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="far fa-clock"></i>
+                                            <span>۶ دقیقه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="read-time">۱۸ شهریور ۱۴۰۲</span>
+                                    <a href="article-detail.html" class="read-more">
+                                        مطالعه مقاله
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- مقاله ۳ -->
+                        <article class="article-card">
+                            <div class="card-image" style="background: linear-gradient(45deg, #4facfe, #00f2fe);">
+                                <div class="card-category">شیمی</div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">شیمی آلی: از مبانی تا کاربردهای پیشرفته</h3>
+                                <p class="card-excerpt">مروری جامع بر شیمی آلی شامل ترکیبات هیدروکربنی، گروه‌های عاملی و واکنش‌های مهم شیمی آلی برای دانش‌آموزان مستعد.</p>
+                                <div class="card-meta">
+                                    <div class="card-author">
+                                        <i class="far fa-user"></i>
+                                        <span>دکتر علی محمدی</span>
+                                    </div>
+                                    <div class="card-stats">
+                                        <div class="stat">
+                                            <i class="far fa-eye"></i>
+                                            <span>۱۹۸</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="far fa-clock"></i>
+                                            <span>۱۰ دقیقه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="read-time">۱۵ شهریور ۱۴۰۲</span>
+                                    <a href="article-detail.html" class="read-more">
+                                        مطالعه مقاله
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- مقاله ۴ -->
+                        <article class="article-card">
+                            <div class="card-image" style="background: linear-gradient(45deg, #43e97b, #38f9d7);">
+                                <div class="card-category">علوم کامپیوتر</div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">برنامه‌نویسی پایتون برای نوجوانان: شروع سریع و آسان</h3>
+                                <p class="card-excerpt">آموزش گام به گام برنامه‌نویسی پایتون با مثال‌های کاربردی و پروژه‌های جذاب برای دانش‌آموزان دوره متوسطه.</p>
+                                <div class="card-meta">
+                                    <div class="card-author">
+                                        <i class="far fa-user"></i>
+                                        <span>مهندس سارا کریمی</span>
+                                    </div>
+                                    <div class="card-stats">
+                                        <div class="stat">
+                                            <i class="far fa-eye"></i>
+                                            <span>۳۵۶</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="far fa-clock"></i>
+                                            <span>۱۲ دقیقه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="read-time">۱۲ شهریور ۱۴۰۲</span>
+                                    <a href="article-detail.html" class="read-more">
+                                        مطالعه مقاله
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- مقاله ۵ -->
+                        <article class="article-card">
+                            <div class="card-image" style="background: linear-gradient(45deg, #fa709a, #fee140);">
+                                <div class="card-category">روش‌های مطالعه</div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">تکنیک‌های تقویت حافظه و یادگیری سریع</h3>
+                                <p class="card-excerpt">آشنایی با روش‌های علمی تقویت حافظه، تکنیک‌های یادگیری فعال و راهکارهای افزایش تمرکز برای دانش‌آموزان.</p>
+                                <div class="card-meta">
+                                    <div class="card-author">
+                                        <i class="far fa-user"></i>
+                                        <span>دکتر مریم نجفی</span>
+                                    </div>
+                                    <div class="card-stats">
+                                        <div class="stat">
+                                            <i class="far fa-eye"></i>
+                                            <span>۴۲۱</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="far fa-clock"></i>
+                                            <span>۷ دقیقه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="read-time">۱۰ شهریور ۱۴۰۲</span>
+                                    <a href="article-detail.html" class="read-more">
+                                        مطالعه مقاله
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- مقاله ۶ -->
+                        <article class="article-card">
+                            <div class="card-image" style="background: linear-gradient(45deg, #a8edea, #fed6e3);">
+                                <div class="card-category">زبان انگلیسی</div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">تقویت مهارت شنیداری در زبان انگلیسی</h3>
+                                <p class="card-excerpt">راهکارهای عملی و تمرین‌های مؤثر برای بهبود مهارت شنیداری و درک مطلب در زبان انگلیسی برای سطوح مختلف.</p>
+                                <div class="card-meta">
+                                    <div class="card-author">
+                                        <i class="far fa-user"></i>
+                                        <span>استاد احمدی</span>
+                                    </div>
+                                    <div class="card-stats">
+                                        <div class="stat">
+                                            <i class="far fa-eye"></i>
+                                            <span>۲۷۴</span>
+                                        </div>
+                                        <div class="stat">
+                                            <i class="far fa-clock"></i>
+                                            <span>۵ دقیقه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="read-time">۸ شهریور ۱۴۰۲</span>
+                                    <a href="article-detail.html" class="read-more">
+                                        مطالعه مقاله
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- صفحه‌بندی -->
+                    <div class="pagination">
+                        <button class="page-btn disabled">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">4</button>
+                        <button class="page-btn">5</button>
+                        <button class="page-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش خبرنامه -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>عضویت در خبرنامه مقالات</h2>
+                <p>با عضویت در خبرنامه، از جدیدترین مقالات و مطالب آموزشی باخبر شوید</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="آدرس ایمیل خود را وارد کنید">
+                    <button type="submit" class="newsletter-btn">عضویت</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>درباره مدرسه</h3>
+                    <p>مدرسه نمونه دولتی ایران با بیش از ۲۰ سال سابقه درخشان در زمینه آموزش و پرورش، همواره در تلاش است تا با بهره‌گیری از جدیدترین روش‌های آموزشی، محیطی پویا و خلاق برای دانش‌آموزان فراهم کند.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>لینک‌های مفید</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-arrow-left"></i> خانه</a></li>
+                        <li><a href="about.html"><i class="fas fa-arrow-left"></i> درباره ما</a></li>
+                        <li><a href="courses.html"><i class="fas fa-arrow-left"></i> آموزش‌ها</a></li>
+                        <li><a href="teachers.html"><i class="fas fa-arrow-left"></i> معلمان</a></li>
+                        <li><a href="news.html"><i class="fas fa-arrow-left"></i> اخبار</a></li>
+                        <li><a href="articles.html"><i class="fas fa-arrow-left"></i> مقالات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تماس با ما</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>تهران، خیابان ولیعصر، پلاک ۱۲۳۴</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@iran-school.ir</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>شنبه تا چهارشنبه: ۷:۳۰ تا ۱۵:۳۰</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>کلیه حقوق این وب‌سایت متعلق به مدرسه نمونه دولتی ایران می‌باشد. © ۱۴۰۲</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // مدیریت منوی موبایل
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const overlay = document.querySelector('.overlay');
+            
+            // باز کردن منوی موبایل
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // بستن منوی موبایل
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+            
+            // بستن منو با کلیک روی لینک‌ها
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            // مدیریت تغییر نمای شبکه/لیست
+            const viewBtns = document.querySelectorAll('.view-btn');
+            const articlesGrid = document.getElementById('articlesGrid');
+            
+            viewBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // حذف کلاس active از همه دکمه‌ها
+                    viewBtns.forEach(b => b.classList.remove('active'));
+                    // اضافه کردن کلاس active به دکمه کلیک شده
+                    this.classList.add('active');
+                    
+                    // تغییر نمای شبکه
+                    const viewType = this.getAttribute('data-view');
+                    articlesGrid.className = 'articles-grid ' + (viewType === 'list' ? 'list-view' : '');
+                });
+            });
+            
+            // مدیریت جستجو
+            const searchInput = document.querySelector('.search-input');
+            const searchBtn = document.querySelector('.search-btn');
+            
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            function performSearch() {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    // در اینجا کد جستجو در مقالات قرار می‌گیرد
+                    console.log('جستجو برای:', searchTerm);
+                    alert(`نتایج جستجو برای: "${searchTerm}"`);
+                }
+            }
+            
+            // مدیریت صفحه‌بندی
+            const pageBtns = document.querySelectorAll('.page-btn:not(.disabled)');
+            pageBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (!this.classList.contains('active')) {
+                        document.querySelector('.page-btn.active').classList.remove('active');
+                        this.classList.add('active');
+                        // در اینجا کد بارگذاری صفحه جدید قرار می‌گیرد
+                        console.log('بارگذاری صفحه:', this.textContent);
+                    }
+                });
+            });
+            
+            // مدیریت عضویت در خبرنامه
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('.newsletter-input').value;
+                if (email) {
+                    alert(`ایمیل ${email} با موفقیت در خبرنامه ثبت شد!`);
+                    this.reset();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

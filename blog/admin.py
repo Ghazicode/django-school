@@ -1,0 +1,37 @@
+from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
+from . import models
+
+
+class CommentsInline(admin.TabularInline):
+    model = models.Comments  # مطمئن شوید این مدل وجود دارد
+    extra = 1
+    can_delete = True
+    verbose_name = "فیلد اضافه"
+    verbose_name_plural = "فیلدهای اضافه"
+    classes = ['collapse']
+
+
+
+class CommentsAdmin(admin.ModelAdmin):
+    list_display = ('user', 'title', 'email', 'status')
+    list_filter = ('title', 'status')
+    search_fields = ('title', 'email')
+
+
+
+
+class PostAdmin(SummernoteModelAdmin):
+    summernote_fields = ('content',)
+    list_display = ('title', 'author', 'status', 'like')
+    list_filter = ('status', 'title')
+    search_fields = ('title', 'content')
+    inlines = [CommentsInline]
+
+
+
+
+admin.site.register(models.Comments, CommentsAdmin)
+admin.site.register(models.Category)
+admin.site.register(models.Tag)
+admin.site.register(models.Article, PostAdmin)

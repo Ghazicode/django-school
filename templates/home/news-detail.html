@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جزئیات خبر - مدرسه نمونه دولتی ایران</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --dark-blue: #0d47a1;
+            --light-blue: #e8f0fe;
+            --accent-blue: #4285f4;
+            --text-dark: #202124;
+            --text-light: #5f6368;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* هدر */
+        header {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-desktop a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-desktop a:hover {
+            color: #a8d1ff;
+        }
+
+        .nav-desktop a.active {
+            color: #a8d1ff;
+        }
+
+        .nav-desktop a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #a8d1ff;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid var(--white);
+        }
+
+        .btn-login:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-register {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .btn-register:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* مسیر ناوبری */
+        .breadcrumb {
+            background: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* بخش اصلی محتوای خبر */
+        .news-detail {
+            padding: 40px 0 80px;
+        }
+
+        .news-article {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .article-header {
+            position: relative;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .article-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        }
+
+        .article-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(26, 115, 232, 0.4);
+        }
+
+        .article-content {
+            padding: 50px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .meta-item i {
+            color: var(--primary-blue);
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            line-height: 1.3;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+        }
+
+        .article-excerpt {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            padding: 20px;
+            background: var(--light-blue);
+            border-radius: 12px;
+            border-right: 4px solid var(--primary-blue);
+        }
+
+        .article-body {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-dark);
+        }
+
+        .article-body p {
+            margin-bottom: 25px;
+        }
+
+        .article-body h3 {
+            font-size: 1.5rem;
+            margin: 40px 0 20px;
+            color: var(--dark-blue);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-blue);
+        }
+
+        .article-body ul {
+            margin: 20px 0;
+            padding-right: 25px;
+        }
+
+        .article-body li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .article-body li::before {
+            content: '•';
+            color: var(--primary-blue);
+            font-weight: bold;
+            position: absolute;
+            right: -20px;
+        }
+
+        .article-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .gallery-item {
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            background: var(--light-blue);
+            border: none;
+            border-radius: 10px;
+            color: var(--primary-blue);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* اخبار مرتبط */
+        .related-news {
+            margin-top: 60px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .related-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .related-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .related-content {
+            padding: 20px;
+        }
+
+        .related-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .related-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* فوتر */
+        footer {
+            background: linear-gradient(135deg, var(--dark-blue), #0a2a5a);
+            color: var(--white);
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-blue);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-right: 5px;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            color: var(--accent-blue);
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* رسپانسیو */
+        @media (max-width: 992px) {
+            .article-image {
+                height: 400px;
+            }
+            
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-content {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+            
+            .article-image {
+                height: 300px;
+            }
+            
+            .article-title {
+                font-size: 1.7rem;
+            }
+            
+            .article-excerpt {
+                font-size: 1.1rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .article-actions {
+                flex-direction: column;
+            }
+            
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+            
+            .article-content {
+                padding: 30px 20px;
+            }
+            
+            .article-title {
+                font-size: 1.5rem;
+            }
+            
+            .article-excerpt {
+                font-size: 1rem;
+                padding: 15px;
+            }
+            
+            .article-body {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- هدر -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>مدرسه نمونه دولتی ایران</h1>
+                        <p>پرورش استعدادها، ساختن آینده</p>
+                    </div>
+                </div>
+                
+                <nav class="nav-desktop">
+                    <a href="index.html">خانه</a>
+                    <a href="about.html">درباره ما</a>
+                    <a href="courses.html">آموزش‌ها</a>
+                    <a href="teachers.html">معلمان</a>
+                    <a href="news.html">اخبار</a>
+                    <a href="contact.html">تماس با ما</a>
+                    
+                    <div class="auth-buttons">
+                        <button class="btn btn-login" onclick="window.location.href='login.html'">ورود</button>
+                        <button class="btn btn-register" onclick="window.location.href='register.html'">ثبت نام</button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- مسیر ناوبری -->
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <a href="index.html"><i class="fas fa-home"></i> خانه</a>
+                <i class="fas fa-chevron-left"></i>
+                <a href="news.html">اخبار</a>
+                <i class="fas fa-chevron-left"></i>
+                <span>جزئیات خبر</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش اصلی محتوای خبر -->
+    <section class="news-detail">
+        <div class="container">
+            <article class="news-article">
+                <div class="article-header">
+                    <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div>
+                    <div class="article-badge">خبر ویژه</div>
+                </div>
+                
+                <div class="article-content">
+                    <div class="article-meta">
+                        <div class="meta-item">
+                            <i class="far fa-calendar"></i>
+                            <span>۱۵ شهریور ۱۴۰۲</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-clock"></i>
+                            <span>زمان مطالعه: ۵ دقیقه</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-eye"></i>
+                            <span>۲۴۵ بازدید</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="far fa-folder"></i>
+                            <span>رویداد ویژه</span>
+                        </div>
+                    </div>
+                    
+                    <h1 class="article-title">برگزاری مراسم افتتاحیه سال تحصیلی جدید با حضور مسئولین استانی</h1>
+                    
+                    <div class="article-excerpt">
+                        مراسم باشکوه افتتاحیه سال تحصیلی ۱۴۰۳-۱۴۰۲ با حضور مدیرکل آموزش و پرورش استان و جمع کثیری از اولیاء و دانش‌آموزان در سالن اجتماعات مدرسه برگزار شد.
+                    </div>
+                    
+                    <div class="article-body">
+                        <p>در آستانه آغاز سال تحصیلی جدید، مدرسه نمونه دولتی ایران میزبان مراسم باشکوه افتتاحیه بود که با حضور جناب آقای دکتر محمدی، مدیرکل محترم آموزش و پرورش استان، جناب آقای مهندس رضایی، رئیس شورای شهر، و جمعی از مسئولین محلی و استانی برگزار گردید.</p>
+                        
+                        <h3>برنامه‌های مراسم</h3>
+                        <p>این مراسم با تلاوت آیاتی چند از کلام الله مجید و پخش سرود ملی جمهوری اسلامی ایران آغاز شد. سپس مدیریت محترم مدرسه، سرکار خانم دکتر واحدی، ضمن خوشامدگویی به حضار، گزارشی از دستاوردهای آموزشی و پرورشی سال گذشته ارائه نمودند.</p>
+                        
+                        <ul>
+                            <li>اجرای سرود همگانی توسط گروه سرود مدرسه</li>
+                            <li>نمایشگاه دستاوردهای علمی و هنری دانش‌آموزان</li>
+                            <li>تقدیر از دانش‌آموزان برتر المپیادهای علمی</li>
+                            <li>رونمایی از پروژه‌های پژوهشی جدید</li>
+                            <li>اجرای تئاتر دانش‌آموزی با موضوع "آینده‌سازی"</li>
+                        </ul>
+                        
+                        <h3>سخنرانی مسئولین</h3>
+                        <p>جناب آقای دکتر محمدی در سخنان خود بر اهمیت کیفیت بخشی به فرآیندهای آموزشی و توجه به مهارت‌آموزی در کنار آموزش‌های تئوریک تأکید نمودند. ایشان مدرسه نمونه دولتی ایران را به عنوان الگویی موفق در سطح استان معرفی کردند.</p>
+                        
+                        <p>همچنین جناب آقای مهندس رضایی از تعهد مدیریت و کادر آموزشی مدرسه در راستای ارتقای سطح علمی دانش‌آموزان تقدیر نمود و قول مساعدت شورای شهر را برای توسعه فضاهای آموزشی اعلام کرد.</p>
+                        
+                        <div class="article-gallery">
+                            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+                            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+                            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+                        </div>
+                        
+                        <h3>اهداف سال تحصیلی جدید</h3>
+                        <p>در ادامه این مراسم، اهداف و برنامه‌های سال تحصیلی جدید توسط معاون آموزشی مدرسه ارائه شد که از جمله آن‌ها می‌توان به موارد زیر اشاره کرد:</p>
+                        
+                        <ul>
+                            <li>اجرای طرح "مدرسه هوشمند" با تجهیز کامل کلاس‌ها به امکانات دیجیتال</li>
+                            <li>راه‌اندازی آزمایشگاه تخصصی نانو تکنولوژی</li>
+                            <li>برگزاری دوره‌های مهارت‌آموزی برای دانش‌آموزان</li>
+                            <li>توسعه فعالیت‌های پژوهشی و شرکت در جشنواره‌های ملی</li>
+                            <li>تقویت زبان انگلیسی با بهره‌گیری از روش‌های نوین آموزشی</li>
+                        </ul>
+                        
+                        <p>در پایان مراسم، از دانش‌آموزان برتر سال گذشته و معلمان نمونه با اهدای لوح تقدیر و هدایایی تجلیل به عمل آمد. این مراسم با پذیرایی از مهمانان و بازدید از نمایشگاه دستاوردهای مدرسه به پایان رسید.</p>
+                    </div>
+                    
+                    <div class="article-actions">
+                        <button class="action-btn">
+                            <i class="far fa-thumbs-up"></i>
+                            <span>پسندیدم (۱۲۴)</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="far fa-share-square"></i>
+                            <span>اشتراک گذاری</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="far fa-bookmark"></i>
+                            <span>ذخیره کردن</span>
+                        </button>
+                        <button class="action-btn" onclick="window.print()">
+                            <i class="fas fa-print"></i>
+                            <span>چاپ خبر</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- اخبار مرتبط -->
+            <section class="related-news">
+                <h2 class="section-title">اخبار مرتبط</h2>
+                <div class="related-grid">
+                    <div class="related-card">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+                        <div class="related-content">
+                            <h3 class="related-title">کسب رتبه اول تیم رباتیک مدرسه در مسابقات استانی</h3>
+                            <div class="related-meta">
+                                <span>۱۰ شهریور ۱۴۰۲</span>
+                                <span>۱۲۸ بازدید</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="related-card">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+                        <div class="related-content">
+                            <h3 class="related-title">برگزاری اردوی علمی-تفریحی به مقصد اصفهان</h3>
+                            <div class="related-meta">
+                                <span>۵ شهریور ۱۴۰۲</span>
+                                <span>۹۸ بازدید</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="related-card">
+                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1571260899304-425eee4c7f60?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
+                        <div class="related-content">
+                            <h3 class="related-title">افتتاح آزمایشگاه نانو تکنولوژی مدرسه</h3>
+                            <div class="related-meta">
+                                <span>۲۵ مرداد ۱۴۰۲</span>
+                                <span>۱۵۶ بازدید</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>درباره مدرسه</h3>
+                    <p>مدرسه نمونه دولتی ایران با بیش از ۲۰ سال سابقه درخشان در زمینه آموزش و پرورش، همواره در تلاش است تا با بهره‌گیری از جدیدترین روش‌های آموزشی، محیطی پویا و خلاق برای دانش‌آموزان فراهم کند.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>لینک‌های مفید</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-arrow-left"></i> خانه</a></li>
+                        <li><a href="about.html"><i class="fas fa-arrow-left"></i> درباره ما</a></li>
+                        <li><a href="courses.html"><i class="fas fa-arrow-left"></i> آموزش‌ها</a></li>
+                        <li><a href="teachers.html"><i class="fas fa-arrow-left"></i> معلمان</a></li>
+                        <li><a href="news.html"><i class="fas fa-arrow-left"></i> اخبار</a></li>
+                        <li><a href="contact.html"><i class="fas fa-arrow-left"></i> تماس با ما</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تماس با ما</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>تهران، خیابان ولیعصر، پلاک ۱۲۳۴</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@iran-school.ir</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>شنبه تا چهارشنبه: ۷:۳۰ تا ۱۵:۳۰</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>کلیه حقوق این وب‌سایت متعلق به مدرسه نمونه دولتی ایران می‌باشد. © ۱۴۰۲</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // مدیریت دکمه‌های تعامل
+        document.addEventListener('DOMContentLoaded', function() {
+            const likeBtn = document.querySelector('.action-btn:nth-child(1)');
+            let likeCount = 124;
+            let isLiked = false;
+            
+            likeBtn.addEventListener('click', function() {
+                if (!isLiked) {
+                    likeCount++;
+                    this.innerHTML = `<i class="fas fa-thumbs-up"></i><span>پسندیدم (${likeCount})</span>`;
+                    this.style.background = 'var(--primary-blue)';
+                    this.style.color = 'var(--white)';
+                    isLiked = true;
+                } else {
+                    likeCount--;
+                    this.innerHTML = `<i class="far fa-thumbs-up"></i><span>پسندیدم (${likeCount})</span>`;
+                    this.style.background = 'var(--light-blue)';
+                    this.style.color = 'var(--primary-blue)';
+                    isLiked = false;
+                }
+            });
+            
+            // مدیریت گالری تصاویر
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // در اینجا می‌توان modal برای نمایش بزرگنمایی تصویر ایجاد کرد
+                    alert('بزرگنمایی تصویر - در حالت واقعی این بخش modal نمایش داده می‌شود');
+                });
+            });
+            
+            // مدیریت دکمه اشتراک گذاری
+            const shareBtn = document.querySelector('.action-btn:nth-child(2)');
+            shareBtn.addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: document.title,
+                        text: 'این خبر را بخوانید',
+                        url: window.location.href
+                    });
+                } else {
+                    alert('امکان اشتراک‌گذاری در این مرورگر وجود ندارد');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

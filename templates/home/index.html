@@ -642,6 +642,39 @@
 
                     <div class="auth-buttons">
                         <div class="auth-buttons">
+                            {% if request.user.is_authenticated %}
+                            <div class="auth-buttons">
+                                <form action="{% url 'account:logout' %}" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">خروج</button>
+                                </form>
+                                {% if request.user.is_superuser %}
+                                <form action="/admin" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">پنل</button>
+                                </form>
+                                {% elif request.user.is_student %}
+                                {% for name in request.user.profiles.all %}
+                                <form action="/admin" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">{{ name.first_name }}</button>
+                                </form>
+                                {% endfor %}
+
+                                 {% elif request.user.is_teacher %}
+                                {% for name in request.user.profiles.all %}
+                                <form action="/admin" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">{{ name.first_name }}</button>
+                                </form>
+                                {% endfor %}
+
+                                {% elif request.user.is_parents %}
+                                {% for name in request.user.profiles.all %}
+                                <form action="/admin" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">{{ name.first_name }}</button>
+                                </form>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+
+                            {% else %}
                             <div class="auth-buttons">
                                 <form action="{% url 'account:login' %}" method="get" style="display: inline;">
                                     <button type="submit" class="btn btn-login">ورود</button>
@@ -650,6 +683,7 @@
                                     <button type="submit" class="btn btn-register">ثبت نام</button>
                                 </form>
                             </div>
+                            {% endif %}
                         </div>
                 </nav>
 
@@ -677,7 +711,14 @@
             <a href="#"><i class="fas fa-newspaper"></i> اخبار</a>
             <a href="#"><i class="fas fa-phone-alt"></i> تماس با ما</a>
         </nav>
+        {% if request.user.is_authenticated %}
+        <div class="mobile-auth-buttons">
+            <form action="{% url 'account:logout' %}" method="get" style="width: 100%; margin-bottom: 10px;">
+                <button type="submit" class="btn btn-danger" style="width: 100%;">خروج</button>
+            </form>
 
+        </div>
+        {% else %}
         <div class="mobile-auth-buttons">
             <form action="{% url 'account:login' %}" method="get" style="width: 100%; margin-bottom: 10px;">
                 <button type="submit" class="btn btn-login" style="width: 100%;">ورود</button>
@@ -686,6 +727,8 @@
                 <button type="submit" class="btn btn-register" style="width: 100%;">ثبت نام</button>
             </form>
         </div>
+
+        {% endif %}
     </div>
 
     <div class="overlay"></div>
@@ -867,6 +910,7 @@
 
             <div class="copyright">
                 <p>کلیه حقوق این وب‌سایت متعلق به مدرسه نمونه دولتی ایران می‌باشد. © ۱۴۰۲</p>
+                
             </div>
         </div>
     </footer>

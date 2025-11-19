@@ -35,7 +35,8 @@ class CustomUserAdmin(UserAdmin):
                 'is_active',
                 'is_superuser',
                 'is_teacher',
-                'is_student'
+                'is_student',
+                'is_parents'
             ),
         }),
         ('group permissions', {
@@ -65,7 +66,8 @@ class CustomUserAdmin(UserAdmin):
                 'is_teacher',  
                 'is_staff', 
                 'is_active',
-                'is_student,'
+                'is_student',
+                'is_parents'
                 
             ),
         }),

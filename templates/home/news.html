@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اخبار و رویدادها - مدرسه نمونه دولتی ایران</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --dark-blue: #0d47a1;
+            --light-blue: #e8f0fe;
+            --accent-blue: #4285f4;
+            --text-dark: #202124;
+            --text-light: #5f6368;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* هدر */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-desktop a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-desktop a:hover {
+            color: #a8d1ff;
+        }
+
+        .nav-desktop a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: #a8d1ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-desktop a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid var(--white);
+        }
+
+        .btn-login:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-register {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .btn-register:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* منوی موبایل */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.4s ease;
+            z-index: 1100;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* بخش هیرو */
+        .news-hero {
+            background: linear-gradient(rgba(26, 115, 232, 0.9), rgba(13, 71, 161, 0.9)), url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .news-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .news-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .news-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-btn {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* فیلترها */
+        .news-filters {
+            background: var(--white);
+            padding: 25px 0;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 10px 20px;
+            background: var(--light-blue);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-tab.active {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .filter-tab:hover {
+            transform: translateY(-2px);
+        }
+
+        .sort-select {
+            padding: 10px 15px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            background: var(--white);
+            font-size: 0.9rem;
+        }
+
+        /* بخش اخبار */
+        .news-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--text-dark);
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 70px;
+            height: 3px;
+            background-color: var(--primary-blue);
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .news-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .news-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 2;
+        }
+
+        .news-img {
+            height: 220px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .news-card:hover .news-img {
+            transform: scale(1.05);
+        }
+
+        .news-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .news-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .news-category {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .news-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        .news-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .news-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .news-link:hover {
+            gap: 12px;
+        }
+
+        /* خبر ویژه */
+        .featured-news {
+            margin-bottom: 60px;
+        }
+
+        .featured-content {
+            padding: 30px;
+        }
+
+        .featured-news .news-card h3 {
+            font-size: 1.6rem;
+        }
+
+        .featured-news .news-card p {
+            font-size: 1rem;
+        }
+
+        /* دکمه بارگذاری بیشتر */
+        .load-more {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn-load {
+            padding: 12px 35px;
+            background: var(--white);
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-load:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(26, 115, 232, 0.3);
+        }
+
+        /* فوتر */
+        footer {
+            background: linear-gradient(135deg, var(--dark-blue), #0a2a5a);
+            color: var(--white);
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-blue);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-right: 5px;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            color: var(--accent-blue);
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* رسپانسیو */
+        @media (max-width: 992px) {
+            .news-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .news-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .news-card.featured {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .news-hero {
+                padding: 80px 0;
+                margin-bottom: 40px;
+            }
+            
+            .news-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+            
+            .news-hero h1 {
+                font-size: 1.7rem;
+            }
+            
+            .news-card {
+                margin-bottom: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- هدر -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>مدرسه نمونه دولتی ایران</h1>
+                        <p>پرورش استعدادها، ساختن آینده</p>
+                    </div>
+                </div>
+                
+                <nav class="nav-desktop">
+                    <a href="index.html">خانه</a>
+                    <a href="about.html">درباره ما</a>
+                    <a href="courses.html">آموزش‌ها</a>
+                    <a href="teachers.html">معلمان</a>
+                    <a href="news.html" class="active">اخبار</a>
+                    <a href="contact.html">تماس با ما</a>
+                    
+                    <div class="auth-buttons">
+                        <button class="btn btn-login" onclick="window.location.href='login.html'">ورود</button>
+                        <button class="btn btn-register" onclick="window.location.href='register.html'">ثبت نام</button>
+                    </div>
+                </nav>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- منوی موبایل -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <h3>منو</h3>
+            <button class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <nav class="mobile-nav">
+            <a href="index.html"><i class="fas fa-home"></i> خانه</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> درباره ما</a>
+            <a href="courses.html"><i class="fas fa-book-open"></i> آموزش‌ها</a>
+            <a href="teachers.html"><i class="fas fa-chalkboard-teacher"></i> معلمان</a>
+            <a href="news.html"><i class="fas fa-newspaper"></i> اخبار</a>
+            <a href="contact.html"><i class="fas fa-phone-alt"></i> تماس با ما</a>
+        </nav>
+        
+        <div class="mobile-auth-buttons">
+            <button class="btn btn-login" style="width: 100%; margin-bottom: 10px;" onclick="window.location.href='login.html'">ورود</button>
+            <button class="btn btn-register" style="width: 100%;" onclick="window.location.href='register.html'">ثبت نام</button>
+        </div>
+    </div>
+    
+    <div class="overlay"></div>
+
+    <!-- بخش هیرو -->
+    <section class="news-hero">
+        <div class="container">
+            <div class="news-hero-content">
+                <h1>آخرین اخبار و رویدادها</h1>
+                <p>از جدیدترین اتفاقات و برنامه‌های مدرسه نمونه دولتی ایران مطلع شوید</p>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="جستجو در اخبار...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- بخش اخبار -->
+    <section class="news-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>اخبار مدرسه</h2>
+                <p>جدیدترین رویدادها و اخبار مربوط به مدرسه نمونه دولتی ایران</p>
+            </div>
+
+            <!-- خبر ویژه -->
+            <div class="featured-news">
+                <div class="news-card featured">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="featured-content">
+                        <div class="news-badge">خبر ویژه</div>
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> ۱۵ شهریور ۱۴۰۲</span>
+                            <span class="news-category">رویداد ویژه</span>
+                        </div>
+                        <h3>برگزاری مراسم افتتاحیه سال تحصیلی جدید با حضور مسئولین استانی</h3>
+                        <p>مراسم باشکوه افتتاحیه سال تحصیلی ۱۴۰۳-۱۴۰۲ با حضور مدیرکل آموزش و پرورش استان و جمع کثیری از اولیاء و دانش‌آموزان در سالن اجتماعات مدرسه برگزار شد. در این مراسم برنامه‌های متنوع فرهنگی و هنری اجرا گردید.</p>
+                        <a href="#" class="news-link">مطالعه ادامه خبر <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- شبکه اخبار -->
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> ۱۰ شهریور ۱۴۰۲</span>
+                            <span class="news-category">مسابقات</span>
+                        </div>
+                        <h3>کسب رتبه اول تیم رباتیک مدرسه در مسابقات استانی</h3>
+                        <p>تیم رباتیک مدرسه نمونه دولتی ایران موفق به کسب رتبه اول در مسابقات استانی رباتیک شد. این تیم با ساخت رباتی هوشمند در بخش مسابقات...</p>
+                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> ۵ شهریور ۱۴۰۲</span>
+                            <span class="news-category">برنامه‌ها</span>
+                        </div>
+                        <h3>برگزاری اردوی علمی-تفریحی به مقصد اصفهان</h3>
+                        <p>اردوی سه‌روزه دانش‌آموزان پایه دهم و یازدهم به شهر تاریخی اصفهان برگزار خواهد شد. این اردو شامل بازدید از مراکز علمی و تاریخی خواهد بود.</p>
+                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> ۱ شهریور ۱۴۰۲</span>
+                            <span class="news-category">افتخارات</span>
+                        </div>
+                        <h3>تقدیر از دانش‌آموزان برتر المپیادهای علمی</h3>
+                        <p>در مراسمی با حضور اولیاء، از ۱۵ دانش‌آموز برتر المپیادهای علمی مدرسه که موفق به کسب مدال در مرحله استانی شده‌اند، تقدیر به عمل آمد.</p>
+                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> ۲۸ مرداد ۱۴۰۲</span>
+                            <span class="news-category">رویدادها</span>
+                        </div>
+                        <h3>کارگاه آموزشی روش‌های مطالعه эффектив برای دانش‌آموزان</h3>
+                        <p>کارگاه دو روزه روش‌های مطالعه مؤثر با حضور اساتید برجسته دانشگاه برای دانش‌آموزان مقاطع مختلف برگزار خواهد شد.</p>
+                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1571260899304-425eee4c7f60?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> ۲۵ مرداد ۱۴۰۲</span>
+                            <span class="news-category">برنامه‌ها</span>
+                        </div>
+                        <h3>افتتاح آزمایشگاه نانو تکنولوژی مدرسه</h3>
+                        <p>آزمایشگاه مجهز نانو تکنولوژی با حضور مسئولین آموزش و پرورش و اساتید دانشگاه به بهره‌برداری رسید. این آزمایشگاه...</p>
+                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1560785496-3c9d27877182?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> ۲۰ مرداد ۱۴۰۲</span>
+                            <span class="news-category">مسابقات</span>
+                        </div>
+                        <h3>برگزاری مسابقات والیبال بین‌پایه‌ای در مدرسه</h3>
+                        <p>مسابقات والیبال بین پایه‌های مختلف مدرسه از هفته آینده آغاز خواهد شد. دانش‌آموزان می‌توانند در تیم‌های مختلف ثبت نام کنند.</p>
+                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>درباره مدرسه</h3>
+                    <p>مدرسه نمونه دولتی ایران با بیش از ۲۰ سال سابقه درخشان در زمینه آموزش و پرورش، همواره در تلاش است تا با بهره‌گیری از جدیدترین روش‌های آموزشی، محیطی پویا و خلاق برای دانش‌آموزان فراهم کند.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>لینک‌های مفید</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-arrow-left"></i> خانه</a></li>
+                        <li><a href="about.html"><i class="fas fa-arrow-left"></i> درباره ما</a></li>
+                        <li><a href="courses.html"><i class="fas fa-arrow-left"></i> آموزش‌ها</a></li>
+                        <li><a href="teachers.html"><i class="fas fa-arrow-left"></i> معلمان</a></li>
+                        <li><a href="news.html"><i class="fas fa-arrow-left"></i> اخبار</a></li>
+                        <li><a href="contact.html"><i class="fas fa-arrow-left"></i> تماس با ما</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تماس با ما</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>تهران، خیابان ولیعصر، پلاک ۱۲۳۴</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@iran-school.ir</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>شنبه تا چهارشنبه: ۷:۳۰ تا ۱۵:۳۰</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>کلیه حقوق این وب‌سایت متعلق به مدرسه نمونه دولتی ایران می‌باشد. © ۱۴۰۲</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // مدیریت منوی موبایل
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const overlay = document.querySelector('.overlay');
+            
+            // باز کردن منوی موبایل
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // بستن منوی موبایل
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+            
+            // بستن منو با کلیک روی لینک‌ها
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+            
+           
+            
+          
+            
+           
+            
+        });
+    </script>
+</body>
+</html>

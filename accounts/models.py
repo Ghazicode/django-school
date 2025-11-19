@@ -44,7 +44,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_teacher = models.BooleanField(default=False, verbose_name='معلم')
     is_staff = models.BooleanField(default=False, verbose_name='مدیر') 
     is_active = models.BooleanField(default=True, verbose_name='فعال')
-    is_student = models.BooleanField(default=False, verbose_name='دانش اموز')
+    is_student = models.BooleanField(default=True, verbose_name='دانش اموز')
+    is_parents = models.BooleanField(default=False, verbose_name='والدین')
 
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
@@ -60,7 +61,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='کاربر')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profiles', verbose_name='کاربر')
     phone_number = models.CharField(max_length=11, unique=True, null=True, blank=True, verbose_name='شماره تلفن')
     first_name = models.CharField(max_length=250, default='کاربر', verbose_name='نام')
     last_name = models.CharField(max_length=250, verbose_name='نام خانوادگی')
@@ -76,11 +77,17 @@ class Profile(models.Model):
         return self.user.national_code
     
 
+class Amir(models.Model):
+    name = models.CharField(max_length=255)
 
+
+    def __str__(self):
+        return self.name
 
 
     
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, created, **kwargs):
     if created:
+        
         Profile.objects.create(user=instance)
