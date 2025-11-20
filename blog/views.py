@@ -12,7 +12,7 @@ class Blog(View):
             articles = articles.filter(content__contains = s)
 
 
-        articles = Paginator(articles, 4)
+        articles = Paginator(articles, 6)
         try:
             page_number = request.GET.get('page')
             articles = articles.get_page(page_number)

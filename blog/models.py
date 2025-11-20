@@ -4,12 +4,12 @@ from django_jalali.db import models as jmodels
 
 
 class Article(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='News')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
     title = models.CharField(max_length=255)
     content = models.TextField()
     subject = models.CharField(max_length=250)
-    category = models.ManyToManyField('Category')
-    tag = models.ManyToManyField('Tag')
+    category = models.ManyToManyField('Category', related_name='articles')
+    tag = models.ManyToManyField('Tag', related_name='articles')
     like = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
     read = models.IntegerField(default=0)
@@ -22,7 +22,7 @@ class Article(models.Model):
 
 
     class Meta:
-        ordering = ('-created_date',)
+        ordering = ("-created_date",)
 
     def __str__(self):
         return self.title
