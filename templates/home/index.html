@@ -243,6 +243,19 @@
             opacity: 1;
             visibility: visible;
         }
+        .nav-desktop a.active {
+            color: #a8d1ff;
+        }
+
+        .nav-desktop a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #a8d1ff;
+        }
 
         /* بخش هیرو */
         .hero {
@@ -633,11 +646,12 @@
                 </div>
 
                 <nav class="nav-desktop">
-                    <a href="#">خانه</a>
+                    <a href="{% url "home:main" %}" class="active">خانه</a>
                     <a href="#">درباره ما</a>
                     <a href="#">آموزش‌ها</a>
                     <a href="#">معلمان</a>
                     <a href="#">اخبار</a>
+                    <a href="{% url "blog:main" %}">مقالات</a>
                     <a href="#">تماس با ما</a>
 
                     <div class="auth-buttons">
@@ -704,12 +718,13 @@
         </div>
 
         <nav class="mobile-nav">
-            <a href="#"><i class="fas fa-home"></i> خانه</a>
-            <a href="#"><i class="fas fa-info-circle"></i> درباره ما</a>
-            <a href="#"><i class="fas fa-book-open"></i> آموزش‌ها</a>
-            <a href="#"><i class="fas fa-chalkboard-teacher"></i> معلمان</a>
-            <a href="#"><i class="fas fa-newspaper"></i> اخبار</a>
-            <a href="#"><i class="fas fa-phone-alt"></i> تماس با ما</a>
+            <a href="{% url "home:main" %}"><i class="fas fa-home"></i> خانه</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> درباره ما</a>
+            <a href="courses.html"><i class="fas fa-book-open"></i> آموزش‌ها</a>
+            <a href="teachers.html"><i class="fas fa-chalkboard-teacher"></i> معلمان</a>
+            <a href="news.html"><i class="fas fa-newspaper"></i> اخبار</a>
+            <a href="{% url "blog:main" %}"><i class="fas fa-file-alt"></i> مقالات</a>
+            <a href="contact.html"><i class="fas fa-phone-alt"></i> تماس با ما</a>
         </nav>
         {% if request.user.is_authenticated %}
         <div class="mobile-auth-buttons">

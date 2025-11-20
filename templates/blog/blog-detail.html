@@ -1,3 +1,4 @@
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -81,12 +82,15 @@
             opacity: 0.9;
         }
 
+
+
+        /* هدر */
+        /* /////////////////////////////////////////////////////////////////////////////////////////////////// */
         .nav-desktop {
             display: flex;
             align-items: center;
             gap: 25px;
         }
-
         .nav-desktop a {
             color: var(--white);
             text-decoration: none;
@@ -98,6 +102,19 @@
 
         .nav-desktop a:hover {
             color: #a8d1ff;
+        }
+        .nav-desktop a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: #a8d1ff;
+            transition: width 0.3s ease;
+        }
+        .nav-desktop a:hover::after {
+            width: 100%;
         }
 
         .nav-desktop a.active {
@@ -113,6 +130,8 @@
             height: 2px;
             background-color: #a8d1ff;
         }
+/* /////////////////////////////////////////////////////////////////////////////////////////////////// */
+
 
         .auth-buttons {
             display: flex;
@@ -686,6 +705,7 @@
 
         .page-btn {
             padding: 14px 22px;
+            text-decoration: none;
             background: var(--white);
             border: 2px solid #e0e0e0;
             border-radius: 12px;
@@ -984,9 +1004,7 @@
         }
 
         @media (max-width: 768px) {
-            .nav-desktop {
-                display: none;
-            }
+        
 
             .mobile-menu-btn {
                 display: block;
@@ -1082,18 +1100,59 @@
                 </div>
 
                 <nav class="nav-desktop">
-                    <a href="index.html">خانه</a>
-                    <a href="about.html">درباره ما</a>
-                    <a href="courses.html">آموزش‌ها</a>
-                    <a href="teachers.html">معلمان</a>
-                    <a href="news.html">اخبار</a>
-                    <a href="articles.html" class="active">مقالات</a>
-                    <a href="contact.html">تماس با ما</a>
+                    <a href="{% url "home:main" %}">خانه</a>
+                    <a href="#">درباره ما</a>
+                    <a href="#">آموزش‌ها</a>
+                    <a href="#">معلمان</a>
+                    <a href="#">اخبار</a>
+                    <a href="{% url "blog:main" %}" class="active">مقالات</a>
+                    <a href="#">تماس با ما</a>
 
                     <div class="auth-buttons">
-                        <button class="btn btn-login" onclick="window.location.href='login.html'">ورود</button>
-                        <button class="btn btn-register" onclick="window.location.href='register.html'">ثبت نام</button>
-                    </div>
+                        <div class="auth-buttons">
+                            {% if request.user.is_authenticated %}
+                            <div class="auth-buttons">
+                                <form action="{% url 'account:logout' %}" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">خروج</button>
+                                </form>
+                                {% if request.user.is_superuser %}
+                                <form action="/admin" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">پنل</button>
+                                </form>
+                                {% elif request.user.is_student %}
+                                {% for name in request.user.profiles.all %}
+                                <form action="/admin" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">{{ name.first_name }}</button>
+                                </form>
+                                {% endfor %}
+
+                                 {% elif request.user.is_teacher %}
+                                {% for name in request.user.profiles.all %}
+                                <form action="/admin" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">{{ name.first_name }}</button>
+                                </form>
+                                {% endfor %}
+
+                                {% elif request.user.is_parents %}
+                                {% for name in request.user.profiles.all %}
+                                <form action="/admin" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">{{ name.first_name }}</button>
+                                </form>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+
+                            {% else %}
+                            <div class="auth-buttons">
+                                <form action="{% url 'account:login' %}" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-login">ورود</button>
+                                </form>
+                                <form action="{% url 'account:register' %}" method="get" style="display: inline;">
+                                    <button type="submit" class="btn btn-register">ثبت نام</button>
+                                </form>
+                            </div>
+                            {% endif %}
+                        </div>
                 </nav>
 
                 <button class="mobile-menu-btn">
@@ -1103,8 +1162,9 @@
         </div>
     </header>
 
+
     <!-- منوی موبایل -->
-    <div class="mobile-menu">
+        <div class="mobile-menu">
         <div class="mobile-menu-header">
             <h3>منو</h3>
             <button class="mobile-menu-close">
@@ -1113,21 +1173,31 @@
         </div>
 
         <nav class="mobile-nav">
-            <a href="index.html"><i class="fas fa-home"></i> خانه</a>
-            <a href="about.html"><i class="fas fa-info-circle"></i> درباره ما</a>
-            <a href="courses.html"><i class="fas fa-book-open"></i> آموزش‌ها</a>
-            <a href="teachers.html"><i class="fas fa-chalkboard-teacher"></i> معلمان</a>
-            <a href="news.html"><i class="fas fa-newspaper"></i> اخبار</a>
-            <a href="articles.html" class="active"><i class="fas fa-file-alt"></i> مقالات</a>
-            <a href="contact.html"><i class="fas fa-phone-alt"></i> تماس با ما</a>
+            <a href="#"><i class="fas fa-home"></i> خانه</a>
+            <a href="#"><i class="fas fa-info-circle"></i> درباره ما</a>
+            <a href="#"><i class="fas fa-book-open"></i> آموزش‌ها</a>
+            <a href="#"><i class="fas fa-chalkboard-teacher"></i> معلمان</a>
+            <a href="#"><i class="fas fa-newspaper"></i> اخبار</a>
+            <a href="#"><i class="fas fa-phone-alt"></i> تماس با ما</a>
         </nav>
-
+        {% if request.user.is_authenticated %}
         <div class="mobile-auth-buttons">
-            <button class="btn btn-login" style="width: 100%; margin-bottom: 10px;"
-                onclick="window.location.href='login.html'">ورود</button>
-            <button class="btn btn-register" style="width: 100%;" onclick="window.location.href='register.html'">ثبت
-                نام</button>
+            <form action="{% url 'account:logout' %}" method="get" style="width: 100%; margin-bottom: 10px;">
+                <button type="submit" class="btn btn-danger" style="width: 100%;">خروج</button>
+            </form>
+
         </div>
+        {% else %}
+        <div class="mobile-auth-buttons">
+            <form action="{% url 'account:login' %}" method="get" style="width: 100%; margin-bottom: 10px;">
+                <button type="submit" class="btn btn-login" style="width: 100%;">ورود</button>
+            </form>
+            <form action="{% url 'account:register' %}" method="get" style="width: 100%;">
+                <button type="submit" class="btn btn-register" style="width: 100%;">ثبت نام</button>
+            </form>
+        </div>
+
+        {% endif %}
     </div>
 
     <div class="overlay"></div>
@@ -1137,11 +1207,11 @@
     <section class="breadcrumb">
         <div class="container">
             <div class="breadcrumb-content">
-                <a href="index.html"><i class="fas fa-home"></i> خانه</a>
+                <a href="{% url "home:main" %}"><i class="fas fa-home"></i> خانه</a>
                 <i class="fas fa-chevron-left"></i>
-                <a href="articles.html">مقالات آموزشی</a>
+                <a href="{% url "blog:main" %}">مقالات آموزشی</a>
                 <i class="fas fa-chevron-left"></i>
-                <span>مقاله جاری</span>
+                <span>{{ article.title }}</span>
             </div>
         </div>
     </section>
@@ -1153,8 +1223,8 @@
                 <!-- محتوای اصلی -->
                 <main class="article-content">
                     <div class="article-header">
-                        <div class="article-category">ریاضیات پیشرفته</div>
-                        <h1 class="article-title">روش‌های نوین حل مسائل هندسه در المپیادهای ریاضی</h1>
+                        <div class="article-category">{{ article.subject }}</div>
+                        <h1 class="article-title">{{ article.title }}</h1>
                         <div class="article-meta">
                             <div class="meta-item">
                                 <i class="far fa-user"></i>
@@ -1221,7 +1291,7 @@
                             <!-- نظر ۱ -->
                             <li class="comment-item">
                                 <div class="comment-header">
-                                    <div class="comment-avatar">ع</div>
+                                    <div class="comment-avatar">{{ comment.name|truncate_chars:1 }}</div>
                                     <div>
                                         <div class="comment-author">{{ comment.name }}</div>
                                         <div class="comment-meta">
@@ -1335,7 +1405,7 @@
                     <div class="sidebar-widget">
                         <h3 class="widget-title">برچسب‌ها</h3>
                         <div class="article-tags">
-                            {% for tag in article.tag.all %}
+                            {% for tag in article.tags.all %}
                             <p class="tag">{{ tag.title }}</p>
                             {% endfor %}
                         </div>
@@ -1364,12 +1434,12 @@
                 <div class="footer-column">
                     <h3>لینک‌های مفید</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html"><i class="fas fa-arrow-left"></i> خانه</a></li>
+                        <li><a href="{% url "home:main" %}"><i class="fas fa-arrow-left"></i> خانه</a></li>
                         <li><a href="about.html"><i class="fas fa-arrow-left"></i> درباره ما</a></li>
                         <li><a href="courses.html"><i class="fas fa-arrow-left"></i> آموزش‌ها</a></li>
                         <li><a href="teachers.html"><i class="fas fa-arrow-left"></i> معلمان</a></li>
                         <li><a href="news.html"><i class="fas fa-arrow-left"></i> اخبار</a></li>
-                        <li><a href="articles.html"><i class="fas fa-arrow-left"></i> مقالات</a></li>
+                        <li><a href="{% url "blog:main" %}"><i class="fas fa-arrow-left"></i> مقالات</a></li>
                     </ul>
                 </div>
 

@@ -4,17 +4,17 @@ from django_jalali.db import models as jmodels
 
 
 class Article(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
-    title = models.CharField(max_length=255)
-    content = models.TextField()
-    subject = models.CharField(max_length=250)
-    category = models.ManyToManyField('Category', related_name='articles')
-    tag = models.ManyToManyField('Tag', related_name='articles')
-    like = models.IntegerField(default=0)
-    views = models.IntegerField(default=0)
-    read = models.IntegerField(default=0)
-    search = models.CharField(max_length=250, unique=True)
-    status = models.BooleanField(default=False)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles', verbose_name='نویسنده')
+    title = models.CharField(max_length=255, verbose_name='عنوان')
+    content = models.TextField(verbose_name='محتوا')
+    subject = models.CharField(max_length=250, verbose_name='موضوع')
+    categorys = models.ManyToManyField('Category', related_name='articles', verbose_name='دسته بندی‌‌ها')
+    tags = models.ManyToManyField('Tag', related_name='articles', verbose_name='تگ ها')
+    like = models.IntegerField(default=0, verbose_name='لایک')
+    views = models.IntegerField(default=0, verbose_name='بازدید')
+    read = models.IntegerField(default=0, verbose_name='زمان خواندن')
+    search = models.CharField(max_length=250, unique=True, verbose_name='ادرس')
+    status = models.BooleanField(default=False, verbose_name='وضعیت')
 
     
     created_date = jmodels.jDateField(auto_now_add=True, verbose_name='زمان ثبت')
@@ -22,7 +22,10 @@ class Article(models.Model):
 
 
     class Meta:
-        ordering = ("-created_date",)
+        ordering = ("-id",)
+        verbose_name = "مقاله"
+        verbose_name_plural = "مقاله ها"
+        
 
     def __str__(self):
         return self.title
@@ -32,33 +35,47 @@ class Article(models.Model):
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=250)
+    title = models.CharField(unique=True, max_length=250, verbose_name='عنوان')
     def __str__(self):
         return self.title
+    
+
+    class Meta:
+        verbose_name = "دسته‌بندی‌"
+        verbose_name_plural = "دسته‌بندی‌ها"
     
 
 
 
 
 class Tag(models.Model):
-    title = models.CharField(max_length=250)
+    title = models.CharField(unique=True, max_length=250, verbose_name='عنوان')
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name = "تگ"
+        verbose_name_plural = "تگ‌ها"
+
     
 
 
 
 class Comments(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments', blank=True, null=True)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
-    name = models.CharField(max_length=250)
-    email = models.EmailField()
-    comment = models.TextField()
-    status = models.BooleanField(default=False)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments', verbose_name='نویسنده')
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments', verbose_name='مقاله')
+    name = models.CharField(max_length=250, verbose_name='نام')
+    email = models.EmailField(verbose_name='ایمیل')
+    comment = models.TextField(verbose_name='نظر')
+    status = models.BooleanField(default=False, verbose_name='وضعیت')
 
     created_date = jmodels.jDateField(auto_now_add=True, verbose_name='زمان ثبت')
-    
 
+    
+    class Meta:
+        ordering = ("-id",)
+        verbose_name = "نظر"
+        verbose_name_plural = "نظرات"
 
     def __str__(self):
         return self.name

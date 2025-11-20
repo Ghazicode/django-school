@@ -57,7 +57,7 @@ class BlogDetailView(View):
             article = get_object_or_404(Article, id = article_id, status = True )
             
             Comments.objects.create(
-                user = user,
+                author = user,
                 article = article,
                 name = name,
                 email = email,

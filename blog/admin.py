@@ -14,14 +14,14 @@ class CommentsInline(admin.TabularInline):
 
 
 class CommentsAdmin(admin.ModelAdmin):
-    list_display = ('user', 'name', 'email', 'status')
+    list_display = ('author', 'name', 'email', 'status')
     list_filter = ('name', 'status')
     search_fields = ('title', 'email')
 
 
 
 
-class PostAdmin(SummernoteModelAdmin):
+class ArticleAdmin(SummernoteModelAdmin):
     summernote_fields = ('content',)
     list_display = ('title', 'author', 'status', 'like')
     list_filter = ('status', 'title')
@@ -34,4 +34,4 @@ class PostAdmin(SummernoteModelAdmin):
 admin.site.register(models.Comments, CommentsAdmin)
 admin.site.register(models.Category)
 admin.site.register(models.Tag)
-admin.site.register(models.Article, PostAdmin)
+admin.site.register(models.Article, ArticleAdmin)
