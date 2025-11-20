@@ -14,8 +14,8 @@ class CommentsInline(admin.TabularInline):
 
 
 class CommentsAdmin(admin.ModelAdmin):
-    list_display = ('user', 'title', 'email', 'status')
-    list_filter = ('title', 'status')
+    list_display = ('user', 'name', 'email', 'status')
+    list_filter = ('name', 'status')
     search_fields = ('title', 'email')
 
 

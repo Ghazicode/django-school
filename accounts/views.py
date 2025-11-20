@@ -24,8 +24,11 @@ class LoginView(View):
             user = authenticate(username = cd['national_code'], password = cd['password'])
             if user is not None:
                 login(request, user)
-                
-                return redirect('home:main')
+                next_page = request.GET.get('next_page')
+                if next_page:
+                    return redirect(next_page)
+                else:
+                    return redirect('home:main')
             else:
                 form.add_error('national_code', "کاربری با چنین اطلاعاتی وجود ندارد")
         else:

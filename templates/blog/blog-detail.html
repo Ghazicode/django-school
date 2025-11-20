@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -148,11 +149,108 @@
             transform: translateY(-2px);
         }
 
+        /* منوی موبایل */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--gradient);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.4s ease;
+            z-index: 1100;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* بقیه استایل‌ها دقیقاً مانند قبل باقی می‌مانند */
         /* مسیر ناوبری */
         .breadcrumb {
             background: var(--white);
             padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             margin-bottom: 30px;
         }
 
@@ -188,7 +286,7 @@
         .article-content {
             background: var(--white);
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
             overflow: hidden;
         }
 
@@ -201,7 +299,7 @@
 
         .article-category {
             display: inline-block;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 8px 20px;
             border-radius: 20px;
             font-size: 0.9rem;
@@ -301,7 +399,7 @@
         .article-image {
             max-width: 100%;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .image-caption {
@@ -318,7 +416,7 @@
             margin: 25px 0;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .article-table th {
@@ -350,7 +448,7 @@
             border-radius: 15px;
             padding: 25px;
             margin-bottom: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
 
         .widget-title {
@@ -497,7 +595,7 @@
             background: var(--white);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
         }
 
         .comments-header {
@@ -550,7 +648,8 @@
             gap: 15px;
         }
 
-        .form-input, .form-textarea {
+        .form-input,
+        .form-textarea {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
@@ -566,10 +665,73 @@
             font-family: inherit;
         }
 
-        .form-input:focus, .form-textarea:focus {
+        .form-input:focus,
+        .form-textarea:focus {
             outline: none;
             border-color: var(--primary-blue);
             box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 60px;
+        }
+
+        .pagination {
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 14px 22px;
+            background: var(--white);
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-btn:hover {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .page-btn.active {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+            box-shadow: 0 6px 20px rgba(26, 115, 232, 0.3);
+        }
+
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-btn.disabled:hover {
+            background: var(--white);
+            border-color: #e0e0e0;
+        }
+
+        .page-btn {
+            padding: 12px 18px;
+            font-size: 0.9rem;
+        }
+        .page-btn.active {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+            box-shadow: 0 6px 20px rgba(26, 115, 232, 0.3);
         }
 
         .submit-btn {
@@ -811,11 +973,11 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-            
+
             .sidebar {
                 position: static;
             }
-            
+
             .article-title {
                 font-size: 2rem;
             }
@@ -825,37 +987,41 @@
             .nav-desktop {
                 display: none;
             }
-            
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
             .article-header {
                 padding: 40px 25px 25px;
             }
-            
+
             .article-body {
                 padding: 30px 25px;
             }
-            
+
             .article-title {
                 font-size: 1.7rem;
             }
-            
+
             .article-meta {
                 flex-direction: column;
                 gap: 15px;
                 align-items: flex-start;
             }
-            
+
             .content-section h2 {
                 font-size: 1.5rem;
             }
-            
+
             .form-row {
                 grid-template-columns: 1fr;
             }
-            
+
             .comments-section {
                 padding: 30px 25px;
             }
-            
+
             .replies {
                 margin-right: 30px;
             }
@@ -865,33 +1031,33 @@
             .logo h1 {
                 font-size: 1.3rem;
             }
-            
+
             .article-body {
                 padding: 25px 20px;
             }
-            
+
             .article-title {
                 font-size: 1.5rem;
             }
-            
+
             .article-actions {
                 flex-direction: column;
             }
-            
+
             .comments-section {
                 padding: 25px 20px;
             }
-            
+
             .comment-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
             }
-            
+
             .replies {
                 margin-right: 20px;
             }
-            
+
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
@@ -899,6 +1065,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- هدر -->
     <header>
@@ -913,7 +1080,7 @@
                         <p>پرورش استعدادها، ساختن آینده</p>
                     </div>
                 </div>
-                
+
                 <nav class="nav-desktop">
                     <a href="index.html">خانه</a>
                     <a href="about.html">درباره ما</a>
@@ -922,16 +1089,50 @@
                     <a href="news.html">اخبار</a>
                     <a href="articles.html" class="active">مقالات</a>
                     <a href="contact.html">تماس با ما</a>
-                    
+
                     <div class="auth-buttons">
                         <button class="btn btn-login" onclick="window.location.href='login.html'">ورود</button>
                         <button class="btn btn-register" onclick="window.location.href='register.html'">ثبت نام</button>
                     </div>
                 </nav>
+
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
 
+    <!-- منوی موبایل -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <h3>منو</h3>
+            <button class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <nav class="mobile-nav">
+            <a href="index.html"><i class="fas fa-home"></i> خانه</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> درباره ما</a>
+            <a href="courses.html"><i class="fas fa-book-open"></i> آموزش‌ها</a>
+            <a href="teachers.html"><i class="fas fa-chalkboard-teacher"></i> معلمان</a>
+            <a href="news.html"><i class="fas fa-newspaper"></i> اخبار</a>
+            <a href="articles.html" class="active"><i class="fas fa-file-alt"></i> مقالات</a>
+            <a href="contact.html"><i class="fas fa-phone-alt"></i> تماس با ما</a>
+        </nav>
+
+        <div class="mobile-auth-buttons">
+            <button class="btn btn-login" style="width: 100%; margin-bottom: 10px;"
+                onclick="window.location.href='login.html'">ورود</button>
+            <button class="btn btn-register" style="width: 100%;" onclick="window.location.href='register.html'">ثبت
+                نام</button>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <!-- بقیه کد صفحه دقیقاً مانند قبل باقی می‌ماند -->
     <!-- مسیر ناوبری -->
     <section class="breadcrumb">
         <div class="container">
@@ -957,134 +1158,28 @@
                         <div class="article-meta">
                             <div class="meta-item">
                                 <i class="far fa-user"></i>
-                                <span>دکتر محمد رضایی</span>
+                                {% for user in article.author.profiles.all %}
+                                <span>{{ user.first_name }} {{ user.last_name }}</span>
+                                {% endfor %}
                             </div>
                             <div class="meta-item">
                                 <i class="far fa-calendar"></i>
-                                <span>۲۰ شهریور ۱۴۰۲</span>
+                                <span>{{ article.created_date }}</span>
                             </div>
                             <div class="meta-item">
                                 <i class="far fa-clock"></i>
-                                <span>زمان مطالعه: ۸ دقیقه</span>
+                                <span>زمان مطالعه: {{ article.read }} دقیقه</span>
                             </div>
                             <div class="meta-item">
                                 <i class="far fa-eye"></i>
-                                <span>۳۲۱ بازدید</span>
+                                <span>{{ article.views }}</span>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="article-body">
-                        <div class="content-section">
-                            <h2>مقدمه</h2>
-                            <p>هندسه یکی از شاخه‌های جذاب و چالش‌برانگیز ریاضیات است که در المپیادهای ریاضی جایگاه ویژه‌ای دارد. در این مقاله به بررسی روش‌های نوین و کارآمد برای حل مسائل هندسی در المپیادها می‌پردازیم.</p>
-                            
-                            <div class="highlight-box">
-                                <strong>نکته کلیدی:</strong> تسلط بر اصول اولیه هندسه و درک عمیق قضایای پایه، پیش‌نیاز موفقیت در حل مسائل پیچیده هندسی است.
-                            </div>
-                        </div>
-
-                        <div class="content-section">
-                            <h2>روش‌های تحلیلی در هندسه</h2>
-                            <p>استفاده از روش‌های تحلیلی می‌تواند راه‌حلی سیستماتیک برای مسائل هندسی ارائه دهد. در این روش، نقاط و خطوط با مختصات نمایش داده می‌شوند.</p>
-                            
-                            <h3>مختصات‌دهی کارتزین</h3>
-                            <p>این روش برای مسائلی که شامل نقاط، خطوط و دایره‌ها هستند بسیار کارآمد است.</p>
-                            
-                            <div class="code-block">
-                                // مثال: پیدا کردن مرکز دایره محیطی<br>
-                                let A = {x: 0, y: 0};<br>
-                                let B = {x: 4, y: 0};<br>
-                                let C = {x: 0, y: 3};<br>
-                                // محاسبات مربوط به پیدا کردن مرکز دایره
-                            </div>
-                        </div>
-
-                        <div class="content-section">
-                            <h2>قضایای کلیدی هندسه</h2>
-                            <p>آشنایی با قضایای مهم هندسی می‌تواند زمان حل مسئله را به طور چشمگیری کاهش دهد.</p>
-                            
-                            <div class="info-box">
-                                <strong>قضیه سینوس‌ها:</strong> در هر مثلث، نسبت هر ضلع به سینوس زاویه مقابل آن ثابت است و برابر با قطر دایره محیطی است.
-                            </div>
-                            
-                            <div class="warning-box">
-                                <strong>توجه:</strong> استفاده نابجا از قضایا می‌تواند منجر به حل‌های طولانی و پیچیده شود. همیشه ساده‌ترین راه را انتخاب کنید.
-                            </div>
-
-                            <table class="article-table">
-                                <thead>
-                                    <tr>
-                                        <th>قضیه</th>
-                                        <th>کاربرد</th>
-                                        <th>سطح دشواری</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>قضیه تالس</td>
-                                        <td>تناسب در مثلث‌ها</td>
-                                        <td>مقدماتی</td>
-                                    </tr>
-                                    <tr>
-                                        <td>قضیه سینوس‌ها</td>
-                                        <td>روابط مثلثاتی</td>
-                                        <td>متوسط</td>
-                                    </tr>
-                                    <tr>
-                                        <td>قضیه کوشی</td>
-                                        <td>چهارضلعی‌ها</td>
-                                        <td>پیشرفته</td>
-                                    </tr>
-                                    <tr>
-                                        <td>قضیه اویلر</td>
-                                        <td>دایره محیطی و محاطی</td>
-                                        <td>پیشرفته</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="content-section">
-                            <h2>تمرین‌های عملی</h2>
-                            <p>حل مسائل نمونه می‌تواند در درک بهتر مفاهیم کمک کند.</p>
-                            
-                            <div class="image-container">
-                                <div class="article-image" style="background: var(--light-blue); height: 200px; display: flex; align-items: center; justify-content: center; color: var(--primary-blue);">
-                                    [تصویر نمودار هندسی]
-                                </div>
-                                <div class="image-caption">شکل ۱: نمودار هندسی مسئله نمونه</div>
-                            </div>
-                            
-                            <h3>مسئله نمونه</h3>
-                            <p>در مثلث ABC، نقطه M وسط BC است. اگر مساحت مثلث ABM برابر با ۲۰ سانتی‌متر مربع باشد، مساحت مثلث ABC را پیدا کنید.</p>
-                            
-                            <div class="highlight-box">
-                                <strong>راه‌حل:</strong> از آنجا که M نقطه وسط BC است، ارتفاع مثلث‌های ABM و AMC برابر است. بنابراین مساحت مثلث ABC دو برابر مساحت مثلث ABM خواهد بود.
-                                <br>پاسخ: ۴۰ سانتی‌متر مربع
-                            </div>
-                        </div>
-
-                        <div class="article-actions">
-                            <button class="action-btn">
-                                <i class="far fa-thumbs-up"></i>
-                                <span>پسندیدم (۸۷)</span>
-                            </button>
-                            <button class="action-btn">
-                                <i class="far fa-share-square"></i>
-                                <span>اشتراک گذاری</span>
-                            </button>
-                            <button class="action-btn">
-                                <i class="far fa-bookmark"></i>
-                                <span>ذخیره مقاله</span>
-                            </button>
-                            <button class="action-btn" onclick="window.print()">
-                                <i class="fas fa-print"></i>
-                                <span>چاپ مقاله</span>
-                            </button>
-                        </div>
+                        {{ article.content|safe }}
                     </div>
-
                     <!-- بخش نظرات -->
                     <section class="comments-section">
                         <div class="comments-header">
@@ -1096,54 +1191,85 @@
                         </div>
 
                         <!-- فرم ارسال نظر -->
-                        <form class="comment-form" id="commentForm">
+                        <form class="comment-form" id="commentForm" method="post">
+                            {% csrf_token %}
                             <h3 class="form-title">ثبت نظر جدید</h3>
                             <div class="form-row">
+
+
+                                <input name="article" value="{{ article.id }}" type="hidden" class="form-input"
+                                    required>
+
                                 <div class="form-group">
-                                    <input type="text" class="form-input" placeholder="نام شما" required>
+                                    <input name="name" type="text" class="form-input" placeholder="نام شما" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-input" placeholder="ایمیل شما" required>
+                                    <input name="email" type="email" class="form-input" placeholder="ایمیل شما"
+                                        required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-textarea" placeholder="نظر شما..." required></textarea>
+                                <textarea name="comment" class="form-textarea" placeholder="نظر شما..."
+                                    required></textarea>
                             </div>
                             <button type="submit" class="submit-btn">ارسال نظر</button>
                         </form>
 
                         <!-- لیست نظرات -->
                         <ul class="comments-list" id="commentsList">
+                            {% for comment in comments %}
                             <!-- نظر ۱ -->
                             <li class="comment-item">
                                 <div class="comment-header">
                                     <div class="comment-avatar">ع</div>
                                     <div>
-                                        <div class="comment-author">علی محمدی</div>
+                                        <div class="comment-author">{{ comment.name }}</div>
                                         <div class="comment-meta">
                                             <span class="comment-date">
                                                 <i class="far fa-calendar"></i>
-                                                ۲۲ شهریور ۱۴۰۲
+                                                {{ comment.created_date }}
                                             </span>
-                                            <span>دانش‌آموز پایه یازدهم</span>
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="comment-content">
-                                    مقاله بسیار عالی و کاربردی بود. مخصوصاً بخش مربوط به قضایای هندسی واقعاً به من کمک کرد. آیا منابع بیشتری برای مطالعه بیشتر در این زمینه دارید؟
+                                    {{ comment.comment }}
                                 </div>
-                                <div class="comment-actions">
-                                    <button class="comment-action">
-                                        <i class="far fa-thumbs-up"></i>
-                                        مفید بود (۱۲)
-                                    </button>
+                            </li>
+                            {% endfor %}
+
+                            {% if comments %}
+                            <div class="pagination">
+                                {% if comments.has_previous %}
+                                <a href="?page={{ comments.previous_page_number }}" class="page-btn">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                                {% endif %}
+
+                                {% for i in comments.paginator.page_range %}
+                                {% if comments.number == i %}
+                                <a href="?page={{ i }}" class="page-btn active">{{ i }}</a>
+                                {% else %}
+                                <a href="?page={{ i }}" class="page-btn">{{ i }}</a>
+                                {% endif %}
+                                {% endfor %}
+
+                                {% if comments.has_next %}
+                                <a href="?page={{ comments.next_page_number }}" class="page-btn">
+                                    <i class="fas fa-chevron-left"></i>
+                                </a>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                            <!-- <div class="comment-actions">
                                     <button class="comment-action">
                                         <i class="far fa-reply"></i>
                                         پاسخ
                                     </button>
-                                </div>
+                                </div> -->
 
-                                <!-- پاسخ‌ها -->
+                            <!-- پاسخ‌ها
                                 <div class="replies">
                                     <div class="reply-item">
                                         <div class="comment-header">
@@ -1159,7 +1285,9 @@
                                             </div>
                                         </div>
                                         <div class="comment-content">
-                                            سلام علی جان. خوشحالیم که مقاله براتون مفید بوده. برای مطالعه بیشتر کتاب "هندسه المپیادی" نوشته دکتر احمدی و "مسائل پیشرفته هندسه" از انتشارات فاطمی رو پیشنهاد می‌کنم.
+                                            سلام علی جان. خوشحالیم که مقاله براتون مفید بوده. برای مطالعه بیشتر کتاب
+                                            "هندسه المپیادی" نوشته دکتر احمدی و "مسائل پیشرفته هندسه" از انتشارات فاطمی
+                                            رو پیشنهاد می‌کنم.
                                         </div>
                                         <div class="comment-actions">
                                             <button class="comment-action">
@@ -1169,63 +1297,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-
-                            <!-- نظر ۲ -->
-                            <li class="comment-item">
-                                <div class="comment-header">
-                                    <div class="comment-avatar">ف</div>
-                                    <div>
-                                        <div class="comment-author">فاطمه کریمی</div>
-                                        <div class="comment-meta">
-                                            <span class="comment-date">
-                                                <i class="far fa-calendar"></i>
-                                                ۲۱ شهریور ۱۴۰۲
-                                            </span>
-                                            <span>معلم ریاضی</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-content">
-                                    به عنوان معلم ریاضی باید بگم این مقاله واقعاً جامع و حرفه‌ای تهیه شده. روش‌های ارائه شده برای دانش‌آموزان المپیادی بسیار کاربردی هست. ممنون از زحماتتون
-                                </div>
-                                <div class="comment-actions">
-                                    <button class="comment-action">
-                                        <i class="far fa-thumbs-up"></i>
-                                        مفید بود (۸)
-                                    </button>
-                                    <button class="comment-action">
-                                        <i class="far fa-reply"></i>
-                                        پاسخ
-                                    </button>
-                                </div>
-                            </li>
-
-                            <!-- نظر ۳ -->
-                            <li class="comment-item">
-                                <div class="comment-header">
-                                    <div class="comment-avatar">م</div>
-                                    <div>
-                                        <div class="comment-author">محمد رضایی</div>
-                                        <div class="comment-meta">
-                                            <span class="comment-date">
-                                                <i class="far fa-calendar"></i>
-                                                ۲۰ شهریور ۱۴۰۲
-                                            </span>
-                                            <span>نویسنده مقاله</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment-content">
-                                    از توجه شما دوستان عزیز سپاسگزارم. اگر سوال خاصی در زمینه هندسه المپیادی دارید، در خدمتتون هستم. موفق باشید.
-                                </div>
-                                <div class="comment-actions">
-                                    <button class="comment-action">
-                                        <i class="far fa-thumbs-up"></i>
-                                        مفید بود (۱۵)
-                                    </button>
-                                </div>
-                            </li>
+                            </li> -->
                         </ul>
                     </section>
                 </main>
@@ -1237,20 +1309,16 @@
                         <div class="author-avatar">
                             <i class="fas fa-user-graduate"></i>
                         </div>
-                        <h3 class="author-name">دکتر محمد رضایی</h3>
-                        <p class="author-bio">استاد ریاضیات دانشگاه تهران و مربی تیم المپیاد ریاضی ایران با ۱۵ سال سابقه تدریس</p>
+                        <!-- <h3 class="author-name">دکتر محمد رضایی</h3>
+                        <p class="author-bio">استاد ریاضیات دانشگاه تهران و مربی تیم المپیاد ریاضی ایران با ۱۵ سال سابقه
+                            تدریس</p> -->
+                        {% for user in article.author.profiles.all %}
+                        <h3 class="author-name">{{ user.first_name }} {{ user.last_name }}</h3>
+                        <p class="author-bio">{{ user.description }}</p>
+                        {% endfor %}
                     </div>
 
-                    <!-- فهرست مطالب -->
-                    <div class="sidebar-widget">
-                        <h3 class="widget-title">فهرست مطالب</h3>
-                        <ul class="toc-list">
-                            <li><a href="#intro">مقدمه</a></li>
-                            <li><a href="#analytical">روش‌های تحلیلی</a></li>
-                            <li><a href="#theorems">قضایای کلیدی</a></li>
-                            <li><a href="#practice">تمرین‌های عملی</a></li>
-                        </ul>
-                    </div>
+
 
                     <!-- مقالات مرتبط -->
                     <div class="sidebar-widget">
@@ -1267,11 +1335,9 @@
                     <div class="sidebar-widget">
                         <h3 class="widget-title">برچسب‌ها</h3>
                         <div class="article-tags">
-                            <a href="#" class="tag">هندسه</a>
-                            <a href="#" class="tag">المپیاد ریاضی</a>
-                            <a href="#" class="tag">ریاضیات</a>
-                            <a href="#" class="tag">حل مسئله</a>
-                            <a href="#" class="tag">آموزش</a>
+                            {% for tag in article.tag.all %}
+                            <p class="tag">{{ tag.title }}</p>
+                            {% endfor %}
                         </div>
                     </div>
                 </aside>
@@ -1285,7 +1351,8 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>درباره مدرسه</h3>
-                    <p>مدرسه نمونه دولتی ایران با بیش از ۲۰ سال سابقه درخشان در زمینه آموزش و پرورش، همواره در تلاش است تا با بهره‌گیری از جدیدترین روش‌های آموزشی، محیطی پویا و خلاق برای دانش‌آموزان فراهم کند.</p>
+                    <p>مدرسه نمونه دولتی ایران با بیش از ۲۰ سال سابقه درخشان در زمینه آموزش و پرورش، همواره در تلاش است
+                        تا با بهره‌گیری از جدیدترین روش‌های آموزشی، محیطی پویا و خلاق برای دانش‌آموزان فراهم کند.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-telegram"></i></a>
@@ -1293,7 +1360,7 @@
                         <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-column">
                     <h3>لینک‌های مفید</h3>
                     <ul class="footer-links">
@@ -1305,7 +1372,7 @@
                         <li><a href="articles.html"><i class="fas fa-arrow-left"></i> مقالات</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-column">
                     <h3>تماس با ما</h3>
                     <ul class="contact-info">
@@ -1328,7 +1395,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="copyright">
                 <p>کلیه حقوق این وب‌سایت متعلق به مدرسه نمونه دولتی ایران می‌باشد. © ۱۴۰۲</p>
             </div>
@@ -1336,13 +1403,45 @@
     </footer>
 
     <script>
+        // مدیریت منوی موبایل
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const overlay = document.querySelector('.overlay');
+
+            // باز کردن منوی موبایل
+            mobileMenuBtn.addEventListener('click', function () {
+                mobileMenu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            // بستن منوی موبایل
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+
+            // بستن منو با کلیک روی لینک‌ها
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+        });
+
+        // بقیه اسکریپت‌های صفحه مقاله بدون تغییر
         // مدیریت دکمه‌های تعامل
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const likeBtn = document.querySelector('.action-btn:nth-child(1)');
             let likeCount = 87;
             let isLiked = false;
-            
-            likeBtn.addEventListener('click', function() {
+
+            likeBtn.addEventListener('click', function () {
                 if (!isLiked) {
                     likeCount++;
                     this.innerHTML = `<i class="fas fa-thumbs-up"></i><span>پسندیدم (${likeCount})</span>`;
@@ -1357,11 +1456,11 @@
                     isLiked = false;
                 }
             });
-            
+
             // مدیریت اسکرول برای فهرست مطالب
             const tocLinks = document.querySelectorAll('.toc-list a');
             const sections = document.querySelectorAll('.content-section');
-            
+
             // مشاهده تغییرات برای هایلایت کردن بخش فعال
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1377,14 +1476,14 @@
                     }
                 });
             }, { threshold: 0.5 });
-            
+
             sections.forEach(section => {
                 observer.observe(section);
             });
-            
+
             // مدیریت دکمه اشتراک گذاری
             const shareBtn = document.querySelector('.action-btn:nth-child(2)');
-            shareBtn.addEventListener('click', function() {
+            shareBtn.addEventListener('click', function () {
                 if (navigator.share) {
                     navigator.share({
                         title: document.title,
@@ -1395,10 +1494,10 @@
                     alert('امکان اشتراک‌گذاری در این مرورگر وجود ندارد');
                 }
             });
-            
+
             // اسموث اسکرول برای لینک‌های فهرست
             tocLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetSection = document.querySelector(targetId);
@@ -1415,13 +1514,13 @@
             const commentForm = document.getElementById('commentForm');
             const commentsList = document.getElementById('commentsList');
             const commentsCount = document.querySelector('.comments-count');
-            
-            commentForm.addEventListener('submit', function(e) {
+
+            commentForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                
+
                 const name = this.querySelector('input[type="text"]').value;
                 const comment = this.querySelector('textarea').value;
-                
+
                 if (name && comment) {
                     // ایجاد نظر جدید
                     const newComment = document.createElement('li');
@@ -1451,29 +1550,29 @@
                             </button>
                         </div>
                     `;
-                    
+
                     // اضافه کردن نظر به ابتدای لیست
                     commentsList.insertBefore(newComment, commentsList.firstChild);
-                    
+
                     // به‌روزرسانی تعداد نظرات
                     const currentCount = parseInt(commentsCount.textContent);
                     commentsCount.textContent = currentCount + 1;
-                    
+
                     // ریست کردن فرم
                     this.reset();
-                    
+
                     // نمایش پیام موفقیت
                     alert('نظر شما با موفقیت ثبت شد!');
                 }
             });
 
             // مدیریت دکمه‌های لایک نظرات
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', function (e) {
                 if (e.target.closest('.comment-action')) {
                     const actionBtn = e.target.closest('.comment-action');
                     const likeText = actionBtn.textContent.trim();
                     const likeMatch = likeText.match(/\((\d+)\)/);
-                    
+
                     if (likeMatch) {
                         let likeCount = parseInt(likeMatch[1]);
                         likeCount++;
@@ -1484,4 +1583,5 @@
         });
     </script>
 </body>
+
 </html>

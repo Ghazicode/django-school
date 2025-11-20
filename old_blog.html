@@ -1,3 +1,4 @@
+
 {% load custom_filters %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
@@ -35,9 +36,9 @@
 
         .container {
             width: 100%;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         /* هدر */
@@ -324,101 +325,165 @@
 
         .articles-layout {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 250px 1fr;
             gap: 40px;
+        }
+
+        /* سایدبار فیلترها */
+        .filters-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .filter-widget {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-blue);
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-list li {
+            margin-bottom: 12px;
+        }
+
+        .category-list a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .category-list a:hover {
+            color: var(--primary-blue);
+            transform: translateX(-5px);
+        }
+
+        .category-count {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-2px);
         }
 
         /* محتوای اصلی مقالات */
         .articles-content {
             min-height: 600px;
-            width: 100%;
         }
 
         .articles-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 20px;
-            padding: 0 10px;
         }
 
         .results-info {
             color: var(--text-light);
-            font-size: 1.1rem;
-            font-weight: 500;
+            font-size: 1rem;
         }
 
         .sort-options {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .sort-select {
-            padding: 12px 20px;
+            padding: 10px 15px;
             border: 1px solid #ddd;
-            border-radius: 10px;
+            border-radius: 8px;
             background: var(--white);
-            font-size: 1rem;
-            min-width: 180px;
+            font-size: 0.9rem;
         }
 
         .view-options {
             display: flex;
-            gap: 12px;
-            background: var(--white);
-            padding: 8px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+            gap: 10px;
         }
 
         .view-btn {
-            padding: 12px 18px;
-            background: transparent;
-            border: none;
+            padding: 10px 15px;
+            background: var(--white);
+            border: 1px solid #ddd;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.1rem;
-            color: var(--text-light);
         }
 
         .view-btn.active {
             background: var(--primary-blue);
             color: var(--white);
-            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+            border-color: var(--primary-blue);
         }
 
-        /* شبکه مقالات - بزرگ‌تر شده */
+        /* شبکه مقالات */
         .articles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-            gap: 35px;
-            margin-bottom: 60px;
-            width: 100%;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
         }
 
         .article-card {
             background: var(--white);
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            transition: all 0.4s ease;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
             position: relative;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
         }
 
         .article-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
         .card-image {
-            height: 240px;
+            height: 200px;
             background: var(--gradient);
             position: relative;
             overflow: hidden;
@@ -430,85 +495,66 @@
             bottom: 0;
             right: 0;
             width: 100%;
-            height: 60%;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
         }
 
         .card-category {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             background: var(--primary-blue);
             color: var(--white);
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            padding: 6px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
             z-index: 2;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .card-content {
-            padding: 30px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            padding: 25px;
         }
 
         .card-title {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             line-height: 1.4;
             margin-bottom: 15px;
             color: var(--text-dark);
-            font-weight: 700;
-            min-height: 66px;
         }
 
         .card-excerpt {
             color: var(--text-light);
-            margin-bottom: 25px;
-            line-height: 1.7;
-            font-size: 1.05rem;
-            flex-grow: 1;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         .card-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-light);
-            margin-bottom: 20px;
-            padding: 15px 0;
-            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 15px;
         }
 
         .card-author {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-weight: 500;
-        }
-
-        .card-author i {
-            color: var(--primary-blue);
+            gap: 8px;
         }
 
         .card-stats {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .stat {
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-weight: 500;
-        }
-
-        .stat i {
-            color: var(--primary-blue);
+            gap: 5px;
         }
 
         .card-footer {
@@ -516,66 +562,46 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 15px;
-            margin-top: auto;
+            border-top: 1px solid #eee;
         }
 
         .read-time {
             color: var(--text-light);
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.85rem;
         }
 
         .read-more {
             color: var(--primary-blue);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
             transition: all 0.3s ease;
-            padding: 8px 16px;
-            border: 2px solid var(--primary-blue);
-            border-radius: 10px;
-            font-size: 0.95rem;
         }
 
         .read-more:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-            gap: 12px;
-            transform: translateX(-5px);
+            gap: 10px;
         }
 
-        /* حالت لیست - بزرگ‌تر شده */
+        /* حالت لیست */
         .articles-grid.list-view {
             grid-template-columns: 1fr;
         }
 
         .articles-grid.list-view .article-card {
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 200px 1fr;
             gap: 0;
-            height: 280px;
         }
 
         .articles-grid.list-view .card-image {
             height: 100%;
-            border-radius: 20px 0 0 20px;
+            border-radius: 15px 0 0 15px;
         }
 
         .articles-grid.list-view .card-content {
-            padding: 35px;
-        }
-
-        .articles-grid.list-view .card-title {
-            font-size: 1.5rem;
-            min-height: auto;
-            margin-bottom: 20px;
-        }
-
-        .articles-grid.list-view .card-excerpt {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
+            padding: 30px;
         }
 
         /* صفحه‌بندی */
@@ -583,129 +609,113 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 12px;
-            margin-top: 60px;
+            gap: 10px;
+            margin-top: 50px;
         }
 
         .page-btn {
-            padding: 14px 22px;
+            padding: 12px 18px;
             background: var(--white);
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 600;
-            font-size: 1rem;
-            min-width: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-weight: 500;
         }
 
         .page-btn:hover {
             background: var(--light-blue);
             border-color: var(--primary-blue);
-            transform: translateY(-2px);
         }
 
         .page-btn.active {
             background: var(--primary-blue);
             color: var(--white);
             border-color: var(--primary-blue);
-            box-shadow: 0 6px 20px rgba(26, 115, 232, 0.3);
         }
 
         .page-btn.disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            transform: none;
-        }
-
-        .page-btn.disabled:hover {
-            background: var(--white);
-            border-color: #e0e0e0;
         }
 
         /* بخش خبرنامه */
         .newsletter {
             background: var(--gradient);
             color: var(--white);
-            padding: 80px 0;
-            margin-top: 80px;
-            border-radius: 25px;
+            padding: 60px 0;
+            margin-top: 60px;
+            border-radius: 20px;
             text-align: center;
         }
 
         .newsletter-content {
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
         .newsletter h2 {
-            font-size: 2.3rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 15px;
         }
 
         .newsletter p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
             opacity: 0.9;
         }
 
         .newsletter-form {
             display: flex;
-            gap: 20px;
-            max-width: 550px;
+            gap: 15px;
+            max-width: 500px;
             margin: 0 auto;
         }
 
         .newsletter-input {
             flex: 1;
-            padding: 18px 25px;
+            padding: 15px 20px;
             border: none;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-size: 1rem;
         }
 
         .newsletter-btn {
-            padding: 18px 35px;
+            padding: 15px 30px;
             background: var(--white);
             color: var(--primary-blue);
             border: none;
-            border-radius: 15px;
-            font-weight: 700;
+            border-radius: 10px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.1rem;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         .newsletter-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* فوتر */
         footer {
             background: linear-gradient(135deg, var(--dark-blue), #0a2a5a);
             color: var(--white);
-            padding: 80px 0 30px;
-            margin-top: 100px;
+            padding: 60px 0 20px;
+            margin-top: 80px;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
         .footer-column h3 {
-            font-size: 1.4rem;
-            margin-bottom: 25px;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
 
         .footer-column h3::after {
@@ -713,8 +723,8 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 50px;
-            height: 3px;
+            width: 40px;
+            height: 2px;
             background-color: var(--accent-blue);
         }
 
@@ -723,24 +733,21 @@
         }
 
         .footer-links li {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1rem;
-            padding: 5px 0;
+            gap: 8px;
         }
 
         .footer-links a:hover {
             color: var(--white);
-            padding-right: 8px;
-            transform: translateX(-5px);
+            padding-right: 5px;
         }
 
         .contact-info {
@@ -748,75 +755,66 @@
         }
 
         .contact-info li {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            font-size: 1rem;
+            gap: 10px;
         }
 
         .contact-info i {
             color: var(--accent-blue);
-            margin-top: 4px;
-            font-size: 1.1rem;
+            margin-top: 3px;
         }
 
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
-            background-color: rgba(255, 255, 255, 0.15);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: var(--white);
             text-decoration: none;
             transition: all 0.3s ease;
-            font-size: 1.2rem;
         }
 
         .social-links a:hover {
             background-color: var(--accent-blue);
-            transform: translateY(-5px) scale(1.1);
+            transform: translateY(-3px);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
         }
 
         /* رسپانسیو */
-        @media (max-width: 1200px) {
-            .container {
-                max-width: 1140px;
-            }
-            
-            .articles-grid {
-                grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-                gap: 30px;
-            }
-        }
-
         @media (max-width: 992px) {
             .articles-layout {
                 grid-template-columns: 1fr;
             }
 
+            .filters-sidebar {
+                position: static;
+                order: 2;
+            }
+
+            .articles-content {
+                order: 1;
+            }
+
             .articles-hero h1 {
                 font-size: 2.5rem;
-            }
-            
-            .articles-grid {
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             }
         }
 
@@ -843,12 +841,10 @@
 
             .articles-grid {
                 grid-template-columns: 1fr;
-                gap: 25px;
             }
 
             .articles-grid.list-view .article-card {
                 grid-template-columns: 1fr;
-                height: auto;
             }
 
             .articles-header {
@@ -862,10 +858,6 @@
 
             .sort-options {
                 flex-wrap: wrap;
-            }
-            
-            .card-image {
-                height: 220px;
             }
         }
 
@@ -889,7 +881,7 @@
             .card-meta {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 12px;
+                gap: 10px;
             }
 
             .card-stats {
@@ -898,28 +890,20 @@
             }
 
             .articles-grid.list-view .card-content {
-                padding: 25px;
+                padding: 20px;
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
-                gap: 35px;
+                gap: 30px;
             }
 
             .newsletter h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
 
             .newsletter p {
                 font-size: 1rem;
-            }
-            
-            .card-content {
-                padding: 25px;
-            }
-            
-            .card-title {
-                font-size: 1.3rem;
             }
         }
 
@@ -932,12 +916,16 @@
                 font-size: 1.6rem;
             }
 
+            .filter-widget {
+                padding: 20px;
+            }
+
             .card-content {
                 padding: 20px;
             }
 
             .card-title {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .pagination {
@@ -945,12 +933,8 @@
             }
 
             .page-btn {
-                padding: 12px 18px;
+                padding: 10px 15px;
                 font-size: 0.9rem;
-            }
-            
-            .articles-grid {
-                gap: 20px;
             }
         }
     </style>
@@ -1044,11 +1028,21 @@
     <section class="articles-main">
         <div class="container">
             <div class="articles-layout">
+                <!-- سایدبار فیلترها -->
+                <aside class="filters-sidebar">
+                    
+
+
+
+
+                </aside>
+
                 <!-- محتوای اصلی -->
                 <main class="articles-content">
                     <div class="articles-header">
-                        <div class="results-info">صفحه {{ articles.number }} از {{ articles.paginator.num_pages }}</div>
+                        <div class="results-info"> صفحه {{ articles.number }} از {{ articles.paginator.num_pages }}</div>
                         <div class="sort-options">
+
                             <div class="view-options">
                                 <button class="view-btn active" data-view="grid">
                                     <i class="fas fa-th"></i>
@@ -1062,20 +1056,24 @@
 
                     <!-- شبکه مقالات -->
                     <div class="articles-grid" id="articlesGrid">
-                        {% for article in articles %}
+                        <!-- مقاله ۱ -->
+                    {% for article in articles %}
                         <article class="article-card">
                             <div class="card-image" style="background: linear-gradient(45deg, #667eea, #764ba2);">
                                 <div class="card-category">{{ article.subject }}</div>
                             </div>
                             <div class="card-content">
                                 <h3 class="card-title">{{ article.title }}</h3>
-                                <p class="card-excerpt">{{ article.content|truncate_chars:30|safe }}</p>
+                                <p class="card-excerpt">{{ article.content|truncate_chars:40|safe }}</p>
                                 <div class="card-meta">
                                     <div class="card-author">
                                         <i class="far fa-user"></i>
+                                        
                                         {% for user in article.author.profiles.all %}
                                         <span>{{ user.first_name }} {{ user.last_name }}</span>
                                         {% endfor %}
+                                        
+                                        
                                     </div>
                                     <div class="card-stats">
                                         <div class="stat">
@@ -1098,30 +1096,34 @@
                             </div>
                         </article>
                         {% endfor %}
+
                     </div>
 
                     <!-- صفحه‌بندی -->
                     <div class="pagination">
                         {% if articles.has_previous %}
-                        <a href="?page={{ articles.previous_page_number }}" class="page-btn">
+                        <a href="?page={{ articles.previous_page_number }}" class="page-btn disabled">
                             <i class="fas fa-chevron-right"></i>
+                        
                         </a>
                         {% endif %}
-                        
+                        <!-- <button class="page-btn active">{{ articles.number }}</button> -->
                         {% for i in articles.paginator.page_range %}
-                            {% if articles.number == i %}
-                            <a href="?page={{ i }}" class="page-btn active">{{ i }}</a>
-                            {% else %}
-                            <a href="?page={{ i }}" class="page-btn">{{ i }}</a>
-                            {% endif %}
+                        {% if articles.number == i %}
+                        <a href="?page={{ i }}" class="page-btn active">{{ i }}</a>
+                        {% else %}
+                        <a href="?page={{ i }}" class="page-btn">{{ i }}</a>
+                        {% endif %}
                         {% endfor %}
-                        
                         {% if articles.has_next %}
                         <a href="?page={{ articles.next_page_number }}" class="page-btn">
                             <i class="fas fa-chevron-left"></i>
                         </a>
                         {% endif %}
+                        
                     </div>
+
+                    
                 </main>
             </div>
         </div>
@@ -1245,7 +1247,17 @@
                     articlesGrid.className = 'articles-grid ' + (viewType === 'list' ? 'list-view' : '');
                 });
             });
+
+           
+            
+
+            
+
+           
+
+           
         });
     </script>
 </body>
+
 </html>
