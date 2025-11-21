@@ -1,3 +1,4 @@
+{% load news_tags %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -799,101 +800,41 @@
             </div>
 
             <!-- خبر ویژه -->
+             {% for s in special %}
             <div class="featured-news">
                 <div class="news-card featured">
-                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
+                    <div class="news-img" style="background-image: url('');"></div>
+                        <!-- <img src="{{ s.image.url }}" width="50" height="50" class="news-img" alt=""> -->
                     <div class="featured-content">
-                        <div class="news-badge">خبر ویژه</div>
+                        <div class="news-badge">{{ s.subject }}</div>
                         <div class="news-meta">
-                            <span class="news-date"><i class="far fa-calendar"></i> ۱۵ شهریور ۱۴۰۲</span>
-                            <span class="news-category">رویداد ویژه</span>
+                            <span class="news-date"><i class="far fa-calendar"></i>{{ s.created_date|date:'Y-m-d' }}</span>
+                            <!-- <span class="news-category"> ویژه</span> -->
                         </div>
-                        <h3>برگزاری مراسم افتتاحیه سال تحصیلی جدید با حضور مسئولین استانی</h3>
-                        <p>مراسم باشکوه افتتاحیه سال تحصیلی ۱۴۰۳-۱۴۰۲ با حضور مدیرکل آموزش و پرورش استان و جمع کثیری از اولیاء و دانش‌آموزان در سالن اجتماعات مدرسه برگزار شد. در این مراسم برنامه‌های متنوع فرهنگی و هنری اجرا گردید.</p>
-                        <a href="#" class="news-link">مطالعه ادامه خبر <i class="fas fa-arrow-left"></i></a>
+                        <h3>{{ s.title }}</h3>
+                        <p>{{ s.content|news_tag:50|safe }}</p>
+                        <a href="{% url "home:news_detail" s.search %}" class="news-link">مطالعه ادامه خبر <i class="fas fa-arrow-left"></i></a>
                     </div>
                 </div>
             </div>
+            {% endfor %}
 
             <!-- شبکه اخبار -->
             <div class="news-grid">
+                {% for n in news %}
                 <div class="news-card">
                     <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
                     <div class="news-content">
                         <div class="news-meta">
-                            <span class="news-date"><i class="far fa-calendar"></i> ۱۰ شهریور ۱۴۰۲</span>
-                            <span class="news-category">مسابقات</span>
+                            <span class="news-date"><i class="far fa-calendar"></i>{{ n.created_date|date:'Y-m-d' }}</span>
+                            <span class="news-category">{{ n.subject }}</span>
                         </div>
-                        <h3>کسب رتبه اول تیم رباتیک مدرسه در مسابقات استانی</h3>
-                        <p>تیم رباتیک مدرسه نمونه دولتی ایران موفق به کسب رتبه اول در مسابقات استانی رباتیک شد. این تیم با ساخت رباتی هوشمند در بخش مسابقات...</p>
-                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                        <h3>{{ n.title }}</h3>
+                        <p>{{ n.content|news_tag|safe }}</p>
+                        <a href="{% url "home:news_detail" n.search %}" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
                     </div>
                 </div>
-                
-                <div class="news-card">
-                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-date"><i class="far fa-calendar"></i> ۵ شهریور ۱۴۰۲</span>
-                            <span class="news-category">برنامه‌ها</span>
-                        </div>
-                        <h3>برگزاری اردوی علمی-تفریحی به مقصد اصفهان</h3>
-                        <p>اردوی سه‌روزه دانش‌آموزان پایه دهم و یازدهم به شهر تاریخی اصفهان برگزار خواهد شد. این اردو شامل بازدید از مراکز علمی و تاریخی خواهد بود.</p>
-                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-date"><i class="far fa-calendar"></i> ۱ شهریور ۱۴۰۲</span>
-                            <span class="news-category">افتخارات</span>
-                        </div>
-                        <h3>تقدیر از دانش‌آموزان برتر المپیادهای علمی</h3>
-                        <p>در مراسمی با حضور اولیاء، از ۱۵ دانش‌آموز برتر المپیادهای علمی مدرسه که موفق به کسب مدال در مرحله استانی شده‌اند، تقدیر به عمل آمد.</p>
-                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-date"><i class="far fa-calendar"></i> ۲۸ مرداد ۱۴۰۲</span>
-                            <span class="news-category">رویدادها</span>
-                        </div>
-                        <h3>کارگاه آموزشی روش‌های مطالعه эффектив برای دانش‌آموزان</h3>
-                        <p>کارگاه دو روزه روش‌های مطالعه مؤثر با حضور اساتید برجسته دانشگاه برای دانش‌آموزان مقاطع مختلف برگزار خواهد شد.</p>
-                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1571260899304-425eee4c7f60?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-date"><i class="far fa-calendar"></i> ۲۵ مرداد ۱۴۰۲</span>
-                            <span class="news-category">برنامه‌ها</span>
-                        </div>
-                        <h3>افتتاح آزمایشگاه نانو تکنولوژی مدرسه</h3>
-                        <p>آزمایشگاه مجهز نانو تکنولوژی با حضور مسئولین آموزش و پرورش و اساتید دانشگاه به بهره‌برداری رسید. این آزمایشگاه...</p>
-                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1560785496-3c9d27877182?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');"></div>
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-date"><i class="far fa-calendar"></i> ۲۰ مرداد ۱۴۰۲</span>
-                            <span class="news-category">مسابقات</span>
-                        </div>
-                        <h3>برگزاری مسابقات والیبال بین‌پایه‌ای در مدرسه</h3>
-                        <p>مسابقات والیبال بین پایه‌های مختلف مدرسه از هفته آینده آغاز خواهد شد. دانش‌آموزان می‌توانند در تیم‌های مختلف ثبت نام کنند.</p>
-                        <a href="#" class="news-link">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
             

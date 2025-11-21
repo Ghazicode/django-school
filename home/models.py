@@ -17,10 +17,13 @@ class News(models.Model):
     like = models.IntegerField(default=0, verbose_name='لایک')
     search = models.CharField(max_length=250, verbose_name='ادرس')
     status = models.BooleanField(default=False, verbose_name='وضعیت')
-    created_date = jmodels.jDateField(auto_now_add=True, verbose_name='اپدیت')
-    updated_date = jmodels.jDateField(auto_now=True, verbose_name='اپدیت')
-    published_date = jmodels.jDateField(verbose_name='تاریخ انتشار')
-    exp_date = jmodels.jDateField(verbose_name='تاریخ انقضا')
+    special = models.BooleanField(default=False, verbose_name='ویژه')
+
+    
+    created_date = jmodels.jDateTimeField(auto_now_add=True, verbose_name='اپدیت')
+    updated_date = jmodels.jDateTimeField(auto_now=True, verbose_name='اپدیت')
+    published_date = jmodels.jDateTimeField(verbose_name='تاریخ انتشار')
+    exp_date = jmodels.jDateTimeField(verbose_name='تاریخ انقضا')
 
 
 

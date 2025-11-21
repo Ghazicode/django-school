@@ -653,80 +653,40 @@
         <div class="container">
             <article class="news-article">
                 <div class="article-header">
-                    <!-- <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')"></div> -->
-                     <img src="" alt="" class="article-image">
-                    <div class="article-badge">خبر ویژه</div>
+                    <div class="article-image" style="background-image: url('')"></div>
+                     <!-- <img src="{{ news.image.url }}" alt="" class="article-image"> -->
+                    <div class="article-badge">{{ news.subject }}</div>
                 </div>
                 
                 <div class="article-content">
                     <div class="article-meta">
                         <div class="meta-item">
                             <i class="far fa-calendar"></i>
-                            <span>۱۵ شهریور ۱۴۰۲</span>
+                            <span>{{ news.created_date|date:'Y-m-d' }}</span>
                         </div>
                         <div class="meta-item">
                             <i class="far fa-clock"></i>
-                            <span>زمان مطالعه: ۵ دقیقه</span>
+                            <span>زمان مطالعه: {{ news.read }} دقیقه</span>
                         </div>
                         <div class="meta-item">
                             <i class="far fa-eye"></i>
-                            <span>۲۴۵ بازدید</span>
+                            <span>{{ news.views }} بازدید</span>
                         </div>
-                        <div class="meta-item">
-                            <i class="far fa-folder"></i>
-                            <span>رویداد ویژه</span>
-                        </div>
+                        
                     </div>
                     
-                    <h1 class="article-title">برگزاری مراسم افتتاحیه سال تحصیلی جدید با حضور مسئولین استانی</h1>
-                    
-                    <div class="article-excerpt">
-                        مراسم باشکوه افتتاحیه سال تحصیلی ۱۴۰۳-۱۴۰۲ با حضور مدیرکل آموزش و پرورش استان و جمع کثیری از اولیاء و دانش‌آموزان در سالن اجتماعات مدرسه برگزار شد.
-                    </div>
+                    <h1 class="article-title">{{ news.title }}</h1>
                     
                     <div class="article-body">
-                        <p>در آستانه آغاز سال تحصیلی جدید، مدرسه نمونه دولتی ایران میزبان مراسم باشکوه افتتاحیه بود که با حضور جناب آقای دکتر محمدی، مدیرکل محترم آموزش و پرورش استان، جناب آقای مهندس رضایی، رئیس شورای شهر، و جمعی از مسئولین محلی و استانی برگزار گردید.</p>
-                        
-                        <h3>برنامه‌های مراسم</h3>
-                        <p>این مراسم با تلاوت آیاتی چند از کلام الله مجید و پخش سرود ملی جمهوری اسلامی ایران آغاز شد. سپس مدیریت محترم مدرسه، سرکار خانم دکتر واحدی، ضمن خوشامدگویی به حضار، گزارشی از دستاوردهای آموزشی و پرورشی سال گذشته ارائه نمودند.</p>
-                        
-                        <ul>
-                            <li>اجرای سرود همگانی توسط گروه سرود مدرسه</li>
-                            <li>نمایشگاه دستاوردهای علمی و هنری دانش‌آموزان</li>
-                            <li>تقدیر از دانش‌آموزان برتر المپیادهای علمی</li>
-                            <li>رونمایی از پروژه‌های پژوهشی جدید</li>
-                            <li>اجرای تئاتر دانش‌آموزی با موضوع "آینده‌سازی"</li>
-                        </ul>
-                        
-                        <h3>سخنرانی مسئولین</h3>
-                        <p>جناب آقای دکتر محمدی در سخنان خود بر اهمیت کیفیت بخشی به فرآیندهای آموزشی و توجه به مهارت‌آموزی در کنار آموزش‌های تئوریک تأکید نمودند. ایشان مدرسه نمونه دولتی ایران را به عنوان الگویی موفق در سطح استان معرفی کردند.</p>
-                        
-                        <p>همچنین جناب آقای مهندس رضایی از تعهد مدیریت و کادر آموزشی مدرسه در راستای ارتقای سطح علمی دانش‌آموزان تقدیر نمود و قول مساعدت شورای شهر را برای توسعه فضاهای آموزشی اعلام کرد.</p>
-                        
-                        <div class="article-gallery">
-                            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                        </div>
-                        
-                        <h3>اهداف سال تحصیلی جدید</h3>
-                        <p>در ادامه این مراسم، اهداف و برنامه‌های سال تحصیلی جدید توسط معاون آموزشی مدرسه ارائه شد که از جمله آن‌ها می‌توان به موارد زیر اشاره کرد:</p>
-                        
-                        <ul>
-                            <li>اجرای طرح "مدرسه هوشمند" با تجهیز کامل کلاس‌ها به امکانات دیجیتال</li>
-                            <li>راه‌اندازی آزمایشگاه تخصصی نانو تکنولوژی</li>
-                            <li>برگزاری دوره‌های مهارت‌آموزی برای دانش‌آموزان</li>
-                            <li>توسعه فعالیت‌های پژوهشی و شرکت در جشنواره‌های ملی</li>
-                            <li>تقویت زبان انگلیسی با بهره‌گیری از روش‌های نوین آموزشی</li>
-                        </ul>
-                        
-                        <p>در پایان مراسم، از دانش‌آموزان برتر سال گذشته و معلمان نمونه با اهدای لوح تقدیر و هدایایی تجلیل به عمل آمد. این مراسم با پذیرایی از مهمانان و بازدید از نمایشگاه دستاوردهای مدرسه به پایان رسید.</p>
+                        {{ news.content|safe }}
                     </div>
                     
-                    <div class="article-actions">
+                    
+                    
+                    <!-- <div class="article-actions">
                         <button class="action-btn">
                             <i class="far fa-thumbs-up"></i>
-                            <span>پسندیدم (۱۲۴)</span>
+                            <span>پسندیدم ({{ news.like }})</span>
                         </button>
                         <button class="action-btn">
                             <i class="far fa-share-square"></i>
@@ -740,48 +700,11 @@
                             <i class="fas fa-print"></i>
                             <span>چاپ خبر</span>
                         </button>
-                    </div>
+                    </div> -->
                 </div>
             </article>
             
-            <!-- اخبار مرتبط -->
-            <section class="related-news">
-                <h2 class="section-title">اخبار مرتبط</h2>
-                <div class="related-grid">
-                    <div class="related-card">
-                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                        <div class="related-content">
-                            <h3 class="related-title">کسب رتبه اول تیم رباتیک مدرسه در مسابقات استانی</h3>
-                            <div class="related-meta">
-                                <span>۱۰ شهریور ۱۴۰۲</span>
-                                <span>۱۲۸ بازدید</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="related-card">
-                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                        <div class="related-content">
-                            <h3 class="related-title">برگزاری اردوی علمی-تفریحی به مقصد اصفهان</h3>
-                            <div class="related-meta">
-                                <span>۵ شهریور ۱۴۰۲</span>
-                                <span>۹۸ بازدید</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="related-card">
-                        <div class="related-image" style="background-image: url('https://images.unsplash.com/photo-1571260899304-425eee4c7f60?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')"></div>
-                        <div class="related-content">
-                            <h3 class="related-title">افتتاح آزمایشگاه نانو تکنولوژی مدرسه</h3>
-                            <div class="related-meta">
-                                <span>۲۵ مرداد ۱۴۰۲</span>
-                                <span>۱۵۶ بازدید</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
         </div>
     </section>
 
@@ -844,25 +767,7 @@
     <script>
         // مدیریت دکمه‌های تعامل
         document.addEventListener('DOMContentLoaded', function() {
-            const likeBtn = document.querySelector('.action-btn:nth-child(1)');
-            let likeCount = 124;
-            let isLiked = false;
-            
-            likeBtn.addEventListener('click', function() {
-                if (!isLiked) {
-                    likeCount++;
-                    this.innerHTML = `<i class="fas fa-thumbs-up"></i><span>پسندیدم (${likeCount})</span>`;
-                    this.style.background = 'var(--primary-blue)';
-                    this.style.color = 'var(--white)';
-                    isLiked = true;
-                } else {
-                    likeCount--;
-                    this.innerHTML = `<i class="far fa-thumbs-up"></i><span>پسندیدم (${likeCount})</span>`;
-                    this.style.background = 'var(--light-blue)';
-                    this.style.color = 'var(--primary-blue)';
-                    isLiked = false;
-                }
-            });
+
             
             // مدیریت گالری تصاویر
             const galleryItems = document.querySelectorAll('.gallery-item');

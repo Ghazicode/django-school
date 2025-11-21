@@ -5,7 +5,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 
-class Blog(View):
+class BlogView(View):
     def get(self, request):
         articles = Article.objects.filter(status = True)
         if s := request.GET.get('s'):
