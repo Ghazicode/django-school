@@ -22,7 +22,6 @@ class News(models.Model):
     
     created_date = jmodels.jDateTimeField(auto_now_add=True, verbose_name='اپدیت')
     updated_date = jmodels.jDateTimeField(auto_now=True, verbose_name='اپدیت')
-    published_date = jmodels.jDateTimeField(verbose_name='تاریخ انتشار')
     exp_date = jmodels.jDateTimeField(verbose_name='تاریخ انقضا')
 
 

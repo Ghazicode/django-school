@@ -16,7 +16,7 @@ class HomeView(View):
 class NewsView(View):
     def get(self, request):
         now_jalali = jdatetime.datetime.now()
-        # News.objects.filter(exp_date__lte=now_jalali).delete()
+        News.objects.filter(exp_date__lte=now_jalali).delete()
         news = News.objects.filter(status = True, exp_date__gt=now_jalali)
         special = news.filter(special = True)
 
