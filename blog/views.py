@@ -43,6 +43,8 @@ class BlogDetailView(View):
             comments = comments.get_page(2)
         except EmptyPage:
             comments = comments.get_page(2)
+
+
         return render(request, 'blog/blog-detail.html', {'article':article, 'comments':comments})
 
     def post(self, request, search):
