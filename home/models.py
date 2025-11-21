@@ -10,7 +10,7 @@ class News(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='news', verbose_name='نویسنده')
     title = models.CharField(max_length=250, verbose_name='عنوان')
     content = models.TextField(verbose_name='محتوا')
-    image = models.ImageField(upload_to='news', verbose_name='عکس')
+    image = models.ImageField(upload_to='news', verbose_name='عکس', blank=True, null=True)
     subject = models.CharField(max_length=200, verbose_name='موضوع')
     read = models.IntegerField(default=0, verbose_name='زمان خواندن')
     views = models.IntegerField(default=0, verbose_name='بازدید')
@@ -22,7 +22,7 @@ class News(models.Model):
     
     created_date = jmodels.jDateTimeField(auto_now_add=True, verbose_name='اپدیت')
     updated_date = jmodels.jDateTimeField(auto_now=True, verbose_name='اپدیت')
-    exp_date = jmodels.jDateTimeField(verbose_name='تاریخ انقضا')
+
 
 
 

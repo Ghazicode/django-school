@@ -650,7 +650,7 @@
                     <a href="#">درباره ما</a>
                     <a href="#">آموزش‌ها</a>
                     <a href="#">معلمان</a>
-                    <a href="#">اخبار</a>
+                    <a href="{% url "home:news" %}">اخبار</a>
                     <a href="{% url "blog:main" %}">مقالات</a>
                     <a href="#">تماس با ما</a>
 
@@ -722,7 +722,7 @@
             <a href="about.html"><i class="fas fa-info-circle"></i> درباره ما</a>
             <a href="courses.html"><i class="fas fa-book-open"></i> آموزش‌ها</a>
             <a href="teachers.html"><i class="fas fa-chalkboard-teacher"></i> معلمان</a>
-            <a href="news.html"><i class="fas fa-newspaper"></i> اخبار</a>
+            <a href="{% url "home:news" %}"><i class="fas fa-newspaper"></i> اخبار</a>
             <a href="{% url "blog:main" %}"><i class="fas fa-file-alt"></i> مقالات</a>
             <a href="contact.html"><i class="fas fa-phone-alt"></i> تماس با ما</a>
         </nav>

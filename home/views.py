@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.views import View
 from .models import News
-import jdatetime
+
 
 
 
@@ -15,9 +15,10 @@ class HomeView(View):
 
 class NewsView(View):
     def get(self, request):
-        now_jalali = jdatetime.datetime.now()
-        News.objects.filter(exp_date__lte=now_jalali).delete()
-        news = News.objects.filter(status = True, exp_date__gt=now_jalali)
+
+        news = News.objects.filter(status = True)
+        if s := request.GET.get('s'):
+            news = news.filter(content__contains = s)
         special = news.filter(special = True)
 
         
@@ -29,6 +30,8 @@ class NewsView(View):
 class NewsDetailView(View):
     def get(self, request, search):
         news = News.objects.get(status = True, search = search)
+        news.views +=1
+        news.save()
         
         return render(request, 'home/news-detail.html', {'news':news})
     

@@ -995,7 +995,7 @@
                     <a href="#">درباره ما</a>
                     <a href="#">آموزش‌ها</a>
                     <a href="#">معلمان</a>
-                    <a href="#">اخبار</a>
+                    <a href="{% url "home:news" %}">اخبار</a>
                     <a href="{% url "blog:main" %}" class="active">مقالات</a>
                     <a href="#">تماس با ما</a>
 
@@ -1065,11 +1065,11 @@
         <nav class="mobile-nav">
             <a href="{% url "home:main" %}"><i class="fas fa-home"></i> خانه</a>
             <a href="about.html"><i class="fas fa-info-circle"></i> درباره ما</a>
-            <a href="#"><i class="fas fa-book-open"></i> آموزش‌ها</a>
-            <a href="#"><i class="fas fa-chalkboard-teacher"></i> معلمان</a>
-            <a href="#"><i class="fas fa-newspaper"></i> اخبار</a>
+            <a href="courses.html"><i class="fas fa-book-open"></i> آموزش‌ها</a>
+            <a href="teachers.html"><i class="fas fa-chalkboard-teacher"></i> معلمان</a>
+            <a href="{% url "home:news" %}"><i class="fas fa-newspaper"></i> اخبار</a>
             <a href="{% url "blog:main" %}"><i class="fas fa-file-alt"></i> مقالات</a>
-            <a href="#"><i class="fas fa-phone-alt"></i> تماس با ما</a>
+            <a href="contact.html"><i class="fas fa-phone-alt"></i> تماس با ما</a>
         </nav>
         {% if request.user.is_authenticated %}
         <div class="mobile-auth-buttons">
@@ -1112,6 +1112,7 @@
     </section>
 
     <!-- بخش اصلی -->
+     {% if articles %}
     <section class="articles-main">
         <div class="container">
             <div class="articles-layout">
@@ -1197,6 +1198,9 @@
             </div>
         </div>
     </section>
+    {% else %}
+    <h2 align="center">مقاله‌ای وجود ندارد</h2>
+    {% endif %}
 
     <!-- بخش خبرنامه -->
     <section class="newsletter">
